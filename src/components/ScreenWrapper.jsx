@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {screens} from "../screens.config";
+import {INTERVIEW_SCREEN_ID, screens} from "../screens.config";
 import {preloadImage} from "../utils/preloadImage";
 import { ProgressProvider } from '../context/ProgressContext';
 import {iphone} from "../constants/images";
+import {getAnswerById} from "../utils/getAnswerById";
 
 const Image = styled.img`
   display: none;
@@ -42,6 +43,8 @@ const ComponentWrapper = styled.div`
   }
 `;
 
+const POINTS_FOR_CORRECT = 2;
+const POINTS_FOR_INCORRECT = 1;
 
 export function ScreenWrapper() {
     /////////////////// for development ////////////////////////////////////
@@ -54,16 +57,13 @@ export function ScreenWrapper() {
     const [currentScreenIndex, setCurrentScreenIndex] = useState( +screenParam || 0);
     const [screenDelta, setScreenDelta] = useState(0);
     const [answers, setAnswers] = useState({});
-    const [currentAttempt, setCurrentAttempt] = useState(0);
+    const [points, setPoints] = useState(0);
     const [height, setHeight] = useState('100vh');
-
-    // const setPrev = () => {
-    //     const canSet = currentScreenIndex > 0;
-    //     if (canSet) {
-    //         setCurrentScreenIndex(currentScreenIndex - 1);
-    //         setScreenDelta(screenDelta - 1);
-    //     }
-    // };
+    const [userData, setUserData] = useState({
+        name: null,
+        sex: null,
+        hasPressedBtn: null
+    });
 
     const setNext = () => {
         const canSet = currentScreenIndex < screens.length - 1;
@@ -73,15 +73,24 @@ export function ScreenWrapper() {
         }
     };
 
-    const retryPlanet = (planet) => {
-        setCurrentScreenIndex(planet.startScreen);
-        setCurrentAttempt(0);
+    const setUserInfo = (label, value) => {
+        setUserData(user => ({...user, [label]: value}));
+    }
+    const retryInterview = (planet) => {
+        setCurrentScreenIndex(INTERVIEW_SCREEN_ID);
         setAnswers(answers=> ({...answers, [planet.id]:{}}));
     }
 
-    const setAnswer = (planetId, questionId, answerId) => {
-        setAnswers(answers => ({...answers, [planetId]: {...answers[planetId], [questionId]: answerId}}))
+    const setAnswer = (questionId, answerId) => {
+        setAnswers(answers => ({ ...answers, [questionId]: answerId }));
+        if (checkIsAnswerCorrect(questionId, answerId)) setPoints(points => points + POINTS_FOR_CORRECT)
+        else setPoints(points => points + POINTS_FOR_INCORRECT)
     };
+
+    const checkIsAnswerCorrect = (questionId, answerId) => {
+        const ansId = answerId ?? answers[questionId]
+        return getAnswerById(questionId, ansId).isCorrect;
+    }
 
     const { component, preloadImages, ...screen } = screens[currentScreenIndex] || {};
     const Component = component || (() => null);
@@ -106,11 +115,13 @@ export function ScreenWrapper() {
         answers,
         height,
         screenDelta,
-        currentAttempt,
-        setCurrentAttempt,
-        retryPlanet,
+        userData,
+        points,
         setAnswer,
         setNext,
+        retryInterview,
+        setUserInfo,
+        checkIsAnswerCorrect
     };
 
 

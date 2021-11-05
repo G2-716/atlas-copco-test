@@ -2,8 +2,8 @@ import React, {useContext} from "react";
 import { ProgressContext } from '../../context/ProgressContext';
 import {SEX_TYPES} from "../../screens.config";
 
-export const IntroScreen = () => {
-    const { setUserInfo, userData } = useContext(ProgressContext);
+export const IntroScreen1 = () => {
+    const { setUserInfo, userData, setNext } = useContext(ProgressContext);
     const getSexButton = (sex) => {
         let activeBtn, btn;
         if (sex === SEX_TYPES.Male){
@@ -24,6 +24,6 @@ export const IntroScreen = () => {
         <input value={userData.name ?? ''} onChange={(e)=>setUserInfo('name', e.target.value)} placeholder={'Твое имя'}/>
         {getSexButton(SEX_TYPES.Male)}
         {getSexButton(SEX_TYPES.Female)}
-        <button>next</button>
+        <button onClick={setNext}>next</button>
     </div>
 }
