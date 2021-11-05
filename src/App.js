@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScreenWrapper} from "./components/ScreenWrapper";
+import { ScreenWrapper } from "./components/ScreenWrapper";
 
 function App() {
   return <ScreenWrapper />;
