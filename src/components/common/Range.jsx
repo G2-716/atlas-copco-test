@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ReactSlider from "react-slider";
 import styled from 'styled-components';
 

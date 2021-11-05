@@ -1,16 +1,8 @@
-export const QUESTIONS_TYPES = {
-    Range: 'range',
-    Game: 'game',
-    OneAnswer: 'oneAnswer',
-    TimeAnswer: 'timeAnswer',
-}
-
 export const questions = [
     {
         id: '1',
-        text: (name)=> `Что ж, начнем с простого! Как думаете, ${name}, сколько будет 7% от 7?`,
+        text: ({ user }) => `Что ж, начнем с простого! Как думаете, ${user?.name}, сколько будет 7% от 7?`,
         time: 7,
-        type: QUESTIONS_TYPES.TimeAnswer,
         answers: [
             {
                 id: '1',
@@ -36,8 +28,7 @@ export const questions = [
     },
     {
         id: '2',
-        text: (name)=> {return `Вы отлично держитесь, ${name}! Вы же изучили нашу компанию до собеседования?`},
-        type: QUESTIONS_TYPES.OneAnswer,
+        text: ({ user }) => {return `Вы отлично держитесь, ${user?.name}! Вы же изучили нашу компанию до собеседования?`},
         answers: [
             {
                 id: '1',
@@ -53,10 +44,9 @@ export const questions = [
     },
     {
         id: '3',
-        type: QUESTIONS_TYPES.Range,
         min: 5,
         max: 150,
-        title: (name)=> `Мы зададим вам вопрос, ${name}, точных чисел не просим, постарайтесь попасть в правильную область ответа.`,
+        title: ({ user })=> `Мы зададим вам вопрос, ${user?.name}, точных чисел не просим, постарайтесь попасть в правильную область ответа.`,
         text: () => 'Сколько лет Atlas Copco в мире?',
         answers: [
             {
@@ -75,7 +65,6 @@ export const questions = [
     },
     {
         id: '4',
-        type: QUESTIONS_TYPES.OneAnswer,
         text: () => 'Почему крышка люка круглая?',
         answers: [
             {
@@ -102,7 +91,6 @@ export const questions = [
     },
     {
         id: '5',
-        type: QUESTIONS_TYPES.Range,
         min: 1,
         max: 15,
         title: () => 'Интересный вариант ответа. Поговорим о вас.',
@@ -135,7 +123,6 @@ export const questions = [
     },
     {
         id: '6',
-        type: QUESTIONS_TYPES.OneAnswer,
         title: (name) => `${name}, с чем вы себя ассоциируете? Пожалуйста, не смейтесь. Нам важно узнать о вас больше`,
         text: (name)=> `${name}, нестандартный вопрос :) Вы сова или жаворонок?`,
         answers: [

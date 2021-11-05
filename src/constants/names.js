@@ -1,0 +1,1 @@
+export const INTERVIEWER_NAME = 'Виктор';
