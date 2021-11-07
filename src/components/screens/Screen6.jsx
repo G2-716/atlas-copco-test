@@ -1,3 +1,4 @@
+import React from 'react';
 import { ScreenWrapper } from '../common/ScreenWrapper';
 import { useProgress } from '../../hooks/useProgress';
 import { INTERVIEWER_NAME } from '../../constants/names';
