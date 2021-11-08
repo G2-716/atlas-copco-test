@@ -8,6 +8,9 @@ import { Screen7 } from "./components/screens/Screen7";
 import { Screen8 } from "./components/screens/Screen8";
 import { Screen9 } from "./components/screens/Screen9";
 import { Screen10 } from "./components/screens/Screen10";
+import { Screen40 } from "./components/screens/Screen40";
+import { Screen41 } from "./components/screens/Screen41";
+import { Screen42 } from "./components/screens/Screen42";
 
 export const screens = [
     {
@@ -51,6 +54,18 @@ export const screens = [
     ]),
     {
         component: Screen10,
+        preloadImages: [],
+    },
+    {
+        component: Screen40,
+        preloadImages: [],
+    },
+    {
+        component: Screen41,
+        preloadImages: [],
+    },
+    {
+        component: Screen42,
         preloadImages: [],
     },
 ];

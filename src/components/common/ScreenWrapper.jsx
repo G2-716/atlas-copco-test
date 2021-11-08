@@ -8,10 +8,10 @@ const Wrapper = styled.div`
 `;
 
 export function ScreenWrapper(props) {
-    const { children, className } = props;
+    const { children, className, onClick } = props;
 
     return (
-        <Wrapper className={className}>
+        <Wrapper className={className} onClick={onClick}>
             {children}
         </Wrapper>
     );

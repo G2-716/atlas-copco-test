@@ -1,20 +1,12 @@
 import { useRef, useState } from 'react';
+import { useDidMountEffect } from './useDidMountEffect';
 
-// TODO Fix wrong ticks
 export function useTimer(timeInSecs, { onFinish } = {}) {
   const timerRef = useRef(null);
   const [timeLeft, setTimeLeft] = useState(timeInSecs);
 
   function tick() {
-    const newTimeLeft = timeLeft - 1;
-    setTimeLeft(newTimeLeft);
-
-    if (timeLeft === 0) {
-      stop();
-      onFinish?.();
-    } else {
-      start();
-    }
+    setTimeLeft(prev => prev - 1);
   }
 
   function start() {
@@ -26,6 +18,15 @@ export function useTimer(timeInSecs, { onFinish } = {}) {
     clearTimeout(timerRef.current);
     timerRef.current = null;
   }
+
+  useDidMountEffect(() => {
+    if (timeLeft === 0) {
+      stop();
+      onFinish?.();
+    } else {
+      start();
+    }
+  }, [timeLeft]);
 
   return { timeLeft, start, stop };
 }

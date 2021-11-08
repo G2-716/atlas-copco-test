@@ -1,0 +1,1 @@
+export const BEFORE_NEXT_SCREEN_DELAY = 600;

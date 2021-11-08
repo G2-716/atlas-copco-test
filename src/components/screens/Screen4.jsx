@@ -23,7 +23,7 @@ export function Screen4() {
     next();
   }
 
-  useEffect(start);
+  useEffect(start, []);
 
   return (
     <ScreenWrapper>
