@@ -4,6 +4,8 @@ import { penHorizontal, penVertical } from '../../../constants/images';
 
 const StyledPen = styled.img`
   ${({ direction }) => direction === 'vertical' ? 'height: 140px' : 'width: 140px'};
+  padding: 8px;
+  box-sizing: content-box;
   cursor: pointer;
 `;
 

@@ -2,11 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { isTouchDevice } from '../../../utils/isTouchDevice';
 import { PenPlace } from './PenPlace';
 
 const Wrapper = styled.div`
   position: relative;
 `;
+
+const Backend = isTouchDevice() ? TouchBackend : HTML5Backend;
 
 export function Board(props) {
   const { places, positions, onPositionsChange } = props;
@@ -18,7 +22,7 @@ export function Board(props) {
   }
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={Backend}>
       <Wrapper>
         {Object.keys(places).map((placeId) => {
           const { top, left, direction } = places[placeId];
