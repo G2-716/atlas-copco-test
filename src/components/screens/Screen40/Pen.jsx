@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { penHorizontal, penVertical } from '../../../constants/images';
 
 const StyledPen = styled.img`
-  ${({ direction }) => direction === 'vertical' ? 'height: 140px' : 'width: 140px'};
+  ${({ direction }) => direction === 'vertical' ? 'height: 100%' : 'width: 100%'};
+  object-fit: contain;
   padding: 8px;
   box-sizing: content-box;
   cursor: pointer;

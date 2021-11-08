@@ -8,16 +8,24 @@ const StyledWrapper = styled.div`
   position: absolute;
   top: ${({ top }) => top};
   left: ${({ left }) => left};
-  box-sizing: border-box;
+  width: ${({ direction }) => direction === 'vertical' ? '10px' : '140px'};
+  height: ${({ direction }) => direction === 'vertical' ? '140px' : '10px'};
 `;
 
 const StyledPenPlaceWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
   padding: 4px;
+  box-sizing: content-box;
 `;
 
 const StyledPenPlace = styled.div`
-  width: ${({ direction }) => direction === 'vertical' ? '10px' : '140px'};
-  height: ${({ direction }) => direction === 'vertical' ? '140px' : '10px'};
+  width: 100%;
+  height: 100%;
   background-color: ${({ hovered }) => `rgba(167, 167, 167, ${hovered ? '0.75' : '0.45'})`};
   border-radius: 18px;
 `;
@@ -48,9 +56,9 @@ export function PenPlace(props) {
   }), [pen, onDropPen]);
 
   return (
-    <StyledWrapper className={className} top={top} left={left}>
+    <StyledWrapper className={className} top={top} left={left} direction={direction}>
       <StyledPenPlaceWrapper ref={drop}>
-        <StyledPenPlace hovered={hovered} direction={direction} />
+        <StyledPenPlace hovered={hovered} />
       </StyledPenPlaceWrapper>
       {hasPen(pen) && <StyledPen id={pen} direction={direction} />}
     </StyledWrapper>
