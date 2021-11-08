@@ -1,22 +1,58 @@
 import React from 'react';
+import styled from 'styled-components';
 import { ScreenWrapper } from '../common/ScreenWrapper';
 import { useProgress } from '../../hooks/useProgress';
 import { INTERVIEWER_NAME } from '../../constants/names';
+import { Text, TextBold } from '../common/Text';
+import { Button } from '../common/Button';
+import { Circle } from '../common/Circle';
+import { ImageStyled, ImageWrapper } from '../common/Image';
+import { coffeeWoman } from '../../constants/images';
 
+const Wrapper = styled(ScreenWrapper)`
+    padding-top: calc(61px + 4.6%)
+`;
+
+const CircleStyled = styled(Circle)`
+    top: -46px;
+    left: -51px;
+    width: 117px;
+    background: white;
+    height: 117px;
+`;
+
+const ImageWrapperStyled = styled(ImageWrapper)`
+    height: 50.3%;
+    max-height: 380px;
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-height: 600px){
+            height: 47.3%;
+    }
+`;
+
+const Image = styled(ImageStyled)`
+    width: auto;
+`
 export function Screen6() {
   const { next, user } = useProgress();
 
   return (
-    <ScreenWrapper>
-      <div>
-        Здравствуйте, {INTERVIEWER_NAME}!
-
-        А вы, должно быть, {user.name}?
-
-        Проходите за {INTERVIEWER_NAME}, это ваш интервьюер.
-      </div>
-
-      <button onClick={next}>Дальше</button>
-    </ScreenWrapper>
+    <Wrapper>
+        <CircleStyled/>
+        <TextBold>
+          {`Здравствуйте,\n${INTERVIEWER_NAME}!`}
+        </TextBold>
+        <Text>
+            {`А вы, должно быть,\n${user.name}?`}
+        </Text>
+        <Text>
+            Проходите за {INTERVIEWER_NAME}, это ваш интервьюер.
+        </Text>
+        <ImageWrapperStyled>
+            <Image src={coffeeWoman} />
+        </ImageWrapperStyled>
+        <Button onClick={next}>Дальше</Button>
+    </Wrapper>
   );
 }
