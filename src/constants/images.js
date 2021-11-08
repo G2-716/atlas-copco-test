@@ -4,6 +4,8 @@ import introPeople from "../static/images/introPeople.png";
 import dots3d from "../static/images/dots3d.png";
 import womanTalking from "../static/images/womanTalking.png";
 import elevatorMan from '../static/images/elevatorMan.png';
+import elevatorManThankful from '../static/images/elevatorManThankful.png';
+import coffeeWoman from '../static/images/coffeeWoman.png';
 
 export {
     iphone,
@@ -11,5 +13,7 @@ export {
     introPeople,
     dots3d,
     womanTalking,
-    elevatorMan
+    elevatorMan,
+    elevatorManThankful,
+    coffeeWoman
 };

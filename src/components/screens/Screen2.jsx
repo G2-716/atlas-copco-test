@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { ScreenWrapper } from '../common/ScreenWrapper';
 import { useProgress } from '../../hooks/useProgress';
-import {Circle} from "../common/Circle";
-import {dots3d, womanTalking} from "../../constants/images";
-import {Text, TextBold} from "../common/Text";
-import {Title} from "../common/Title";
-import {Button} from "../common/Button";
-import {ImageStyled, ImageWrapper} from "../common/Image";
+import { Circle } from "../common/Circle";
+import { dots3d, womanTalking } from "../../constants/images";
+import { Text } from "../common/Text";
+import { Title } from "../common/Title";
+import { Button } from "../common/Button";
+import { ImageStyled, ImageWrapper } from "../common/Image";
 
 const Wrapper = styled(ScreenWrapper)`
     padding-top: calc(71px + 8%);
@@ -15,33 +15,40 @@ const Wrapper = styled(ScreenWrapper)`
     @media screen and (min-width: 640px){
         padding-top: calc(15px + 8%);
     }
-`
+`;
+
 const CircleStyled = styled(Circle)`
-    background: white;
     top: -46px;
     left: -51px;
     width: 117px;
     height: 117px;
-`
+`;
+
 const DotsWrapper = styled.div`
     position: absolute;
     right: 0;
     top: 9.2%;
     width: 68px;
     height: 27px;
-`
+`;
+
 const Dots = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`;
+
 const InfoWrapper = styled.div`
     margin-bottom: 4.2354%;
-`
+`;
 
 const ImageWrapperStyled = styled(ImageWrapper)`
-    height: 43%;
-    max-height: 504px;
+    height: 47%;
+    max-height: 510px;
+`;
+
+const Image = styled(ImageStyled)`
+    height: auto;
 `
 export function Screen2() {
   const { user, next } = useProgress();
@@ -59,7 +66,7 @@ export function Screen2() {
             </Text>
         </InfoWrapper>
         <ImageWrapperStyled>
-            <ImageStyled src={womanTalking} alt={''}/>
+            <Image src={womanTalking} alt={''}/>
         </ImageWrapperStyled>
         <Button onClick={next}>Играть</Button>
     </Wrapper>
