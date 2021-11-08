@@ -39,7 +39,7 @@ const ComponentWrapper = styled.div`
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    padding-top: 58px;
+    padding-top: 30px;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);

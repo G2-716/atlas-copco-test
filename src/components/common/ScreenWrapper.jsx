@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   color: white;
   height: 100%;
-  padding: 27px 25px 10px 29px;
+  padding: 27px 29px 10px 29px;
   white-space: pre-wrap;
   overflow: hidden;
   

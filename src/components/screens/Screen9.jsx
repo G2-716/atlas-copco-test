@@ -1,20 +1,14 @@
-import { ScreenWrapper } from '../common/ScreenWrapper';
+import React from 'react';
 import { useProgress } from '../../hooks/useProgress';
+import { InterviewStartScreen } from '../common/InterviewStartScreen';
+
+
 
 export function Screen9() {
-  const { next, user } = useProgress();
+  const { user } = useProgress();
 
-  return (
-    <ScreenWrapper>
-      <div>
-        Здравствуйте еще раз, {user.name}!
-
-        Не переживайте, я бы тоже растерялся в лифте, вечно с этими кнопками путаюсь :)
-
-        Давайте начинать?
-      </div>
-
-      <button onClick={next}>Конечно!</button>
-    </ScreenWrapper>
-  );
+  return <InterviewStartScreen
+      title={`Здравствуйте еще раз,\n${user.name}!`}
+      text={'Не переживайте, я бы тоже растерялся в лифте, вечно с этими кнопками путаюсь :)'}
+  />;
 }

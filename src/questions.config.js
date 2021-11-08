@@ -1,8 +1,16 @@
+import {
+    correct7, incorrect7, correctCompany,
+    incorrectCompany, incorrectAge, correctAge, peoplePhone, socialGreen, socialYellow, socialRed
+} from './constants/images';
+
 export const questions = [
     {
         id: '1',
-        text: ({ user }) => `Что ж, начнем с простого! Как думаете, ${user?.name}, сколько будет 7% от 7?`,
+        title: () => `Что ж, начнем с простого!`,
+        text: ({ user }) => `Как думаете, ${user?.name}, сколько будет 7% от 7?`,
         time: 7,
+        correctPic: correct7,
+        incorrectPic: incorrect7,
         answers: [
             {
                 id: '1',
@@ -28,7 +36,10 @@ export const questions = [
     },
     {
         id: '2',
-        text: ({ user }) => {return `Вы отлично держитесь, ${user?.name}! Вы же изучили нашу компанию до собеседования?`},
+        title: () => ({ user }) => `Вы отлично держитесь, ${user?.name}!`,
+        text: () => `Вы же изучили нашу компанию до собеседования?`,
+        correctPic: correctCompany,
+        incorrectPic: incorrectCompany,
         answers: [
             {
                 id: '1',
@@ -46,6 +57,8 @@ export const questions = [
         id: '3',
         min: 5,
         max: 150,
+        correctPic: correctAge,
+        incorrectPic: incorrectAge,
         title: ({ user })=> `Мы зададим вам вопрос, ${user?.name}, точных чисел не просим, постарайтесь попасть в правильную область ответа.`,
         text: () => 'Сколько лет Atlas Copco в мире?',
         answers: [
@@ -65,7 +78,8 @@ export const questions = [
     },
     {
         id: '4',
-        text: () => 'Почему крышка люка круглая?',
+        time: 7,
+        text: () => 'Как думаете, почему крышка люка круглая?',
         answers: [
             {
                 id: '1',
@@ -75,17 +89,17 @@ export const questions = [
             {
                 id: '2',
                 text: 'Думаю, это просто случайность',
-                isCorrect: false
+                isCorrect: true
             },
             {
                 id: '3',
                 text: 'Чтобы крышка в люк не провалилась',
-                isCorrect: false
+                isCorrect: true
             },
             {
                 id: '4',
                 text: 'Почему дырки в одежде круглые? Потому так всегда и происходит. Дырки — круглые.',
-                isCorrect: false
+                isCorrect: true
             },
         ],
     },
@@ -109,7 +123,6 @@ export const questions = [
                 max: 13,
                 isCorrect: true,
                 afterText: () => 'У вас, должно быть много друзей! :)',
-
             },
             {
                 id: '3',
@@ -123,6 +136,7 @@ export const questions = [
     },
     {
         id: '6',
+        correctPic: peoplePhone,
         title: (name) => `${name}, с чем вы себя ассоциируете? Пожалуйста, не смейтесь. Нам важно узнать о вас больше`,
         text: (name)=> `${name}, нестандартный вопрос :) Вы сова или жаворонок?`,
         answers: [
@@ -131,19 +145,21 @@ export const questions = [
                 text: 'Я точно сова!',
                 isCorrect: true,
                 afterText: () => 'Это здорово! Хорошее качество для работы с клиентами в других часовых поясах :)',
-
+                picture: socialGreen,
             },
             {
                 id: '2',
                 text: 'Жаворонок, утро – лучшее время суток',
                 isCorrect: true,
                 afterText: () => 'Отлично! Вы сможете оптимально работать в своем часовом поясе',
+                picture: socialYellow,
             },
             {
                 id: '3',
                 text: 'По настроению :) Да и раз на раз не приходится',
                 isCorrect: true,
                 afterText: () => 'Внутренняя мобильность – это хорошо! Значит, вы сможете подстраиваться под текущие задачи и ритм жизни :)',
+                picture: socialRed
             },
         ],
     },

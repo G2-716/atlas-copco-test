@@ -1,21 +1,13 @@
-import { ScreenWrapper } from '../common/ScreenWrapper';
+import React from 'react';
 import { useProgress } from '../../hooks/useProgress';
 import { INTERVIEWER_NAME } from '../../constants/names';
+import { InterviewStartScreen } from '../common/InterviewStartScreen';
 
 export function Screen8() {
-  const { next, user } = useProgress();
+    const { user } = useProgress();
 
-  return (
-    <ScreenWrapper>
-      <div>
-        Как мы с вами интересно столкнулись!
-
-        Меня зовут {INTERVIEWER_NAME}, а вы, как я понял, {user.name}.
-
-        Давайте начинать?
-      </div>
-
-      <button onClick={next}>Конечно!</button>
-    </ScreenWrapper>
-  );
+    return <InterviewStartScreen
+        title={`Как мы с вами интересно столкнулись!`}
+        text={`Меня зовут ${INTERVIEWER_NAME}, а вы, как я понял, ${user.name}.`}
+    />;
 }
