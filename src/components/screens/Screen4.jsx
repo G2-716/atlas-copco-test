@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { ScreenWrapper } from '../common/ScreenWrapper';
 import { useProgress } from '../../hooks/useProgress';
 import { useTimer } from '../../hooks/useTimer';
-import { normalizeSecs } from '../../utils/normalizeSecs';
 import { Button } from "../common/Button";
 import { ImageStyled, ImageWrapper } from "../common/Image";
 import { elevatorMan } from "../../constants/images";
 import { TextBold } from "../common/Text";
 import { Triangle } from "../svg/Triangle";
+import { Timer } from '../common/Timer';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: 600px;
@@ -66,14 +66,7 @@ const TextStyled = styled(TextBold)`
     }   
 `;
 
-const TimerWrapper = styled.div`
-    background: #ff0000;
-    border: 2px solid white;
-    padding: 16px 0;
-    text-align: center;
-    margin-left: auto;
-    width: 100px;
-`;
+
 
 const TriangleStyled = styled(Triangle)`
     position: absolute;
@@ -153,9 +146,7 @@ export function Screen4() {
   return (
     <ScreenWrapper>
         <TriangleStyled />
-        <TimerWrapper>
-            {normalizeSecs(timeLeft)}
-        </TimerWrapper>
+        <Timer timeLeft={timeLeft} />
         <ImageWrapperStyled>
             <Image src={elevatorMan} alt={''} />
             <TextStyled>
