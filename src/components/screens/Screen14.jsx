@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getQuestionById } from '../../utils/getQuestionById';
 import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
-import { useProgress } from '../../hooks/useProgress';
 import { useTimer } from '../../hooks/useTimer';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { peopleThinking } from '../../constants/images';

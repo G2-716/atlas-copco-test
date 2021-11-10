@@ -18,6 +18,7 @@ export const RangeQuestionWrapper = (props) => {
 
     const onGiveAnswer = () => {
         const givenAnswer = question.answers.find(ans => ans.min <= answer && ans.max >= answer);
+
         setSliderColor(getSliderColor(givenAnswer));
         setDisabled(true);
         updateAnswer(question, givenAnswer.id);

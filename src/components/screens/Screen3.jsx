@@ -8,11 +8,15 @@ import { Title } from '../common/Title';
 import { Button } from '../common/Button';
 
 const CircleStyled = styled(Circle)`
-  width: 244px;
-  height: 244px;
-  top: -122px;
-  left: 50%;
-  transform: translate(-50%, 0);
+    width: 244px;
+    height: 244px;
+    top: -122px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    @media screen and (max-height: 520px) and (orientation: landscape){
+        width: 180px;
+        height: 180px;
+    } 
 `;
 
 const TriangleWrapper = styled.div`
@@ -25,15 +29,21 @@ const TriangleWrapper = styled.div`
 `;
 
 const TriangleStyled = styled(Triangle)`
-  position: absolute;
-  width: 545px;
-  height: 475px;
-  left: -245px;
-  bottom: -245px;
+    position: absolute;
+    width: 545px;
+    height: 475px;
+    left: -245px;
+    bottom: -245px;
+    
+    @media screen and (max-height: 520px) and (orientation: landscape){
+        width: 320px;
+        height: 300px;
+    } 
 `;
 
 const InfoWrapper = styled.div`
     margin: calc(12.6% + 122px) 0 30px;
+    
     @media screen and (min-width: 640px){
         margin-top: calc(12.6% + 66px);
     }
@@ -49,8 +59,6 @@ export function Screen3() {
             <Title>{user.name}, вы в офисе Atlas Copco!</Title>
             <Title>Заходим в лифт :)</Title>
         </InfoWrapper>
-
-
         <Button onClick={next}>Зайти</Button>
         <TriangleWrapper>
             <TriangleStyled />

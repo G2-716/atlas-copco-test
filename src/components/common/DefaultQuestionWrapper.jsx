@@ -9,6 +9,7 @@ const AnswersWrapper = styled.div`
     margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
+    
     @media screen and (max-height: 600px){
         margin-top: 10px;
     }
@@ -20,6 +21,7 @@ const AnswerWrapper = styled.div`
     width:  ${props => props.isShort ? 'calc(48% - 5px)' : '100%'};
     padding: 10px 36px 10px 24px;
     margin: ${props => props.isShort ? '0 5px 5px 0' : '0'};
+    
     & + & {
         margin-top: ${props => props.isShort ? '0' : '7px'};
     }
@@ -33,6 +35,10 @@ const AnswerWrapper = styled.div`
     }
     
     @media screen and (max-width: 300px){
+        padding: 5px 12px 5px 10px;
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 685px){
         padding: 5px 12px 5px 10px;
     }
 `;

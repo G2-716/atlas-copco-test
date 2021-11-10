@@ -8,17 +8,20 @@ import { coffeeMan } from '../../constants/images';
 import { Button } from './Button';
 
 const Wrapper = styled(ScreenWrapper)`
-      padding-left: 52px;
-      padding-top: 8.1%;
-      
-      @media screen and (max-height: 600px){
-          padding-top: 7.3%;
-      }
-      
-      @media screen and (max-width: 300px){
-          padding-left: 20px;
-      }
-      
+    padding-left: 52px;
+    padding-top: 8.1%;
+    
+    @media screen and (max-height: 600px){
+      padding-top: 7.3%;
+    }
+    
+    @media screen and (max-width: 300px){
+      padding-left: 20px;
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+    padding-top: 50px;
+    }
 `;
 
 const TextWrapper = styled.div`
@@ -37,17 +40,18 @@ const ImageWrapperStyled = styled(ImageWrapper)`
     }
     
     @media screen and (max-width: 300px){
-              margin-left: -20px;
+      margin-left: -20px;
     }
 `;
 
 const Image = styled(ImageStyled)`
-      width: auto;
+    width: auto;
 `;
 
 export function InterviewStartScreen(props) {
     const { next } = useProgress();
-    const { title, text } = props
+    const { title, text } = props;
+
     return (
         <Wrapper>
             <TextWrapper>

@@ -7,6 +7,9 @@ export const Title = styled.p`
     margin-bottom: 10px;
     
     @media screen and (max-width: 320px){
-        font-size: 18px;
+      font-size: 18px;
+    }
+    @media screen and (max-height: 520px) and (orientation: landscape){
+      font-size: 13px;
     }
 `

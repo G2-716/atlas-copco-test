@@ -10,7 +10,7 @@ import { ImageStyled, ImageWrapper } from '../common/Image';
 import { coffeeWoman } from '../../constants/images';
 
 const Wrapper = styled(ScreenWrapper)`
-    padding-top: calc(61px + 4.6%)
+    padding-top: calc(61px + 4.6%);
 `;
 
 const CircleStyled = styled(Circle)`
@@ -26,14 +26,20 @@ const ImageWrapperStyled = styled(ImageWrapper)`
     max-height: 380px;
     display: flex;
     justify-content: flex-end;
+    
     @media screen and (max-height: 600px){
             height: 47.3%;
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        height: 43.3%;
     }
 `;
 
 const Image = styled(ImageStyled)`
     width: auto;
-`
+`;
+
 export function Screen6() {
   const { next, user } = useProgress();
 

@@ -1,13 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 import { getQuestionById } from '../../utils/getQuestionById';
 import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { peopleFlying } from '../../constants/images';
-import styled from 'styled-components';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
-    max-height: 46%;
+    max-height: 39%;
 `;
 
 export function Screen16() {

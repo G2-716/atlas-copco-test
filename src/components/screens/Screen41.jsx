@@ -17,23 +17,27 @@ const TriangleStyled = styled(Triangle)`
 `;
 
 const DialogWrapper = styled.div`
-  width: 298px;
-  height: 229px;
-  margin: 109px auto 0;
-  position: relative;
-  
-  @media screen and (max-width: 330px){
+    width: 298px;
+    height: 229px;
+    margin: 109px auto 0;
+    position: relative;
+    
+    @media screen and (max-width: 330px){
       width: 240px;
       height: 184px;
-  }
-  
-  @media screen and (max-height: 600px){
+    }
+    
+    @media screen and (max-height: 600px){
       margin-top: 80px;
-  }
-  
-  @media screen and (min-width: 640px){
+    }
+    
+    @media screen and (min-width: 640px){
       width: 267px;
-  }
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+      height: 190px;
+    }
 `;
 
 const DialogStyled = styled.img`
@@ -57,7 +61,11 @@ const TextWrapper = styled.div`
     
     @media screen and (min-width: 640px){
       left: 55px;
-  }
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+      top: 23px;
+    }
 `;
 
 const ImageWrapperStyled = styled(ImageWrapper)`

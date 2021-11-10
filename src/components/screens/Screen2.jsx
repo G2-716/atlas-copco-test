@@ -27,7 +27,7 @@ const CircleStyled = styled(Circle)`
 const DotsWrapper = styled.div`
     position: absolute;
     right: 0;
-    top: 9.2%;
+    top: 7.2%;
     width: 68px;
     height: 27px;
 `;
@@ -49,7 +49,8 @@ const ImageWrapperStyled = styled(ImageWrapper)`
 
 const Image = styled(ImageStyled)`
     height: auto;
-`
+`;
+
 export function Screen2() {
   const { user, next } = useProgress();
 

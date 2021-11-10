@@ -1,9 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import { ScreenWrapper } from '../common/ScreenWrapper';
 import { useProgress } from '../../hooks/useProgress';
 import { Text, TextBold } from '../common/Text';
 import { coffeeWoman } from '../../constants/images';
-import styled from 'styled-components';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { Circle } from '../common/Circle';
 import { Button } from '../common/Button';
@@ -27,6 +27,9 @@ const ImageWrapperStyled = styled(ImageWrapper)`
     justify-content: flex-end;
     @media screen and (max-height: 600px){
             height: 47.3%;
+    }
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        height: 43.3%;
     }
 `;
 

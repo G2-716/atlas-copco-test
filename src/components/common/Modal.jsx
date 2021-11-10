@@ -13,30 +13,32 @@ const ModalWrapper = styled.div`
     height: 100%;
     background: rgba(0,0,0,0.4);
     padding-top: 124px;
-`
+`;
 
 const ModalWindow = styled.div`
-  background: white;
-  color: #0098C7;
-  padding: 67px 10px 80px 40px;
-  max-width: 85%;
-  margin: 0 auto;
-`
+    background: white;
+    color: #0098C7;
+    padding: 67px 10px 80px 40px;
+    max-width: 85%;
+    margin: 0 auto;
+`;
 
 const TextStyled = styled(TextBold)`
     margin-bottom: 15px;
+    
     @media screen and (max-width: 300px){
       font-size: 14px;
     }
-`
+`;
 
 const ButtonStyled = styled(Button)`
-  background: #0098C7;
-  border: none;
-  @media screen and (max-width: 300px){
+    background: #0098C7;
+    border: none;
+    
+    @media screen and (max-width: 300px){
       font-size: 14px;
-  }
-`
+    }
+`;
 
 export const Modal = (props) => {
     const { next } = useProgress();

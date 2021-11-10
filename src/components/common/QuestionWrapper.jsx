@@ -22,7 +22,10 @@ const TimerStyled = styled(Timer)`
     @media screen and (max-height: 600px){
         height: 30px;
     }
-`
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        height: 32px;
+    } 
+`;
 
 export const QuestionWrapper = (props) => {
     const { question, timeLeft, children } = props;

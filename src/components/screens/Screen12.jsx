@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { getQuestionById } from '../../utils/getQuestionById';
 import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import {
     companyPeople,
-    correct7,
     correctCompany,
-    helloPeople,
-    incorrect7,
     incorrectCompany
 } from '../../constants/images';
-import styled from 'styled-components';
 import { getAnswerById } from '../../utils/getAnswerById';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
-  height: auto;
-  max-height: none;
+    height: auto;
+    max-height: none;
 `;
 
 export function Screen12() {
@@ -35,7 +32,7 @@ export function Screen12() {
     const question = getQuestionById(questionId);
     return (
         <DefaultQuestionWrapper
-            question={question} 
+            question={question}
             isShort={false}
             chooseFunc={onGiveAnswer}
         >

@@ -19,14 +19,23 @@ const TextStyled = styled(TextBold)`
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
     max-height: 73%;
+    
+    @media screen and (max-height: 700px){
+        max-height: 68%;
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        max-height: 58%;
+    }
 `
 
 export function Screen17() {
-    const { answers } = useProgress();
+    const { answers, next } = useProgress();
     const questionNumber = '6';
     const text = getAnswerById(questionNumber, answers[questionNumber])?.afterText();
+
     return (
-        <ScreenWrapper>
+        <ScreenWrapper onClick={next}>
             <QuestionNumber number={questionNumber} />
             <TextStyled>{text}</TextStyled>
             <ImageWrapperStyled>

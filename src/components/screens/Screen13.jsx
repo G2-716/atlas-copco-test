@@ -20,7 +20,6 @@ const ImageWrapperStyled = styled(ImageWrapper)`
     @media screen and (min-width: 640px){
         height: 38%;
     }
-   
 `;
 
 const Image = styled(ImageStyled)`
@@ -32,13 +31,13 @@ const AfterTextBold = styled(TextBold)`
 `;
 
 const AfterText = styled(Text)`
-   margin: 0;
+    margin: 0;
 `;
 
 const ButtonsWrapper = styled.div`
-  display: flex;
-  margin-top: 5px;
-  margin-right: -15px;
+    display: flex;
+    margin-top: 5px;
+    margin-right: -15px;
 `;
 
 const ButtonStyled = styled(Button)`
@@ -46,13 +45,21 @@ const ButtonStyled = styled(Button)`
     min-width: 75px;
     font-size: 16px;
     height: 45px;
+    
+    @media screen and (max-height: 520px) and (orientation: landscape){
+      height: 30px;
+      font-size: 12px;
+    }
 `;
 
-const ResetButtonStyled = styled(Button)`
+const ResetButtonStyled = styled(ButtonStyled)`
     width: 248px;
     margin-left: 10px;
-    font-size: 16px;
-    height: 45px;
+    
+    @media screen and (max-height: 520px) and (orientation: landscape){
+      height: 30px;
+      font-size: 12px;
+    }
 `;
 
 const AfterIncorrectImageWrapperStyled = styled(ImageWrapper)`
@@ -73,15 +80,23 @@ const AfterIncorrectImageWrapperStyled = styled(ImageWrapper)`
     }
     
     @media screen and (max-height: 700px){
-        max-height: 28%;
+        max-height: 25%;
     }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        max-height: 21%;
+    }
+    
+    @media screen and (max-height: 520px) and (orientation: landscape){
+      display: none;
+    } 
 `;
 
 const AfterCorrectImageWrapperStyled = styled(ImageWrapper)`
     max-height: 40%;
     height: auto;
     
-    @media screen and (min-width: 400px){
+    @media screen and (min-width: 400px) {
         justify-content: flex-start;
         height: 42%;
         & ${ImageStyled}{
@@ -96,6 +111,15 @@ const AfterCorrectImageWrapperStyled = styled(ImageWrapper)`
     @media screen and (max-height: 700px){
         max-height: 35%;
     }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        max-height: 29%;
+        justify-content: flex-end;
+    }
+    
+    @media screen and (max-height: 520px) and (orientation: landscape){
+      display: none;
+    } 
 `;
 
 

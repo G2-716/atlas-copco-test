@@ -2,8 +2,6 @@ import React from 'react';
 import { useProgress } from '../../hooks/useProgress';
 import { InterviewStartScreen } from '../common/InterviewStartScreen';
 
-
-
 export function Screen9() {
   const { user } = useProgress();
 

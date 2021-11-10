@@ -20,6 +20,10 @@ const TriangleStyled = styled(Triangle)`
     @media screen and (max-width: 290px){
         right: -5px;
     }
+    
+    @media screen and (max-height: 520px) and (orientation: landscape){
+      display: none;
+    } 
 `;
 
 const TextWrapper = styled.div`
@@ -33,7 +37,7 @@ const TextWrapper = styled.div`
 
 const ButtonStyled = styled(Button)`
     margin-top: 34px;
-    width: 158px;
+    width: 160px;
     height: 50px;
 `;
 
@@ -46,6 +50,11 @@ const CircleWrapper = styled.div`
     height: 440px;
     max-height: 59.7%;
     width: 183px;
+    
+    @media screen and (max-height: 700px){
+      max-height: 55%;
+    }
+    
     @media screen and (min-width: 640px){
         width: 100px;
     }
@@ -53,6 +62,7 @@ const CircleWrapper = styled.div`
     @media screen and (max-width: 330px){
         width: 110px;
     }
+    
 `
 
 const CircleStyled = styled(Circle)`
@@ -70,9 +80,27 @@ const ImageWrapperStyled = styled(ImageWrapper)`
         height: 30%;
     }
     
-    @media screen and (min-width: 640px){
-        height: 220px;
+    @media screen and (max-height: 600px){
+        height: 24%
     }
+    
+    @media screen and (max-height: 700px){
+        height: 27%;
+    }
+    
+    @media screen and (min-width: 640px){
+        height: 31%;
+    }
+    
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        max-height: 25%;
+        justify-content: flex-end;
+    }
+    
+    @media screen and (max-height: 500px){
+            justify-content: flex-end;
+    }
+    
 `;
 
 const Image = styled(ImageStyled)`
