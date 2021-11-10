@@ -8,70 +8,51 @@ import { BEFORE_NEXT_SCREEN_DELAY } from '../../../constants/delays';
 import { Board } from './Board';
 import { hasPen } from './PenPlace';
 
-const PEN_PLACES = {
-  '0': {
-    top: 0,
-    left: 'calc(50% - 74px)',
+const PEN_PLACES = [
+  {
     direction: 'horizontal',
+    ids: ['1', '2', '3', '4'],
   },
-  '1': {
-    top: '14px',
-    left: 'calc(50% - 74px)',
+  {
     direction: 'vertical',
+    ids: ['5', '6', '7', '8', '9'],
   },
-  '2': {
-    top: '14px',
-    left: 'calc(100% - 80px)',
+  {
+    direction: 'horizontal',
+    ids: ['10', '11', '12', '13'],
+  },
+  {
     direction: 'vertical',
+    ids: ['14', '15', '16', '17', '18'],
   },
-  '3': {
-    top: '158px',
-    left: '0px',
+  {
     direction: 'horizontal',
+    ids: ['19', '20', '21', '22'],
   },
-  '4': {
-    top: '158px',
-    left: '144px',
+  {
+    direction: 'vertical',
+    ids: ['23', '24', '25', '26', '27'],
+  },
+  {
     direction: 'horizontal',
+    ids: ['28', '29', '30', '31'],
   },
-  // '5': {
-  //   top: 0,
-  //   left: 0,
-  //   direction: 'horizontal',
-  // },
-  // '6': {
-  //   top: 0,
-  //   left: 0,
-  //   direction: 'horizontal',
-  // },
-  // '7': {
-  //   top: 0,
-  //   left: 0,
-  //   direction: 'horizontal',
-  // },
-  // '8': {
-  //   top: 0,
-  //   left: 0,
-  //   direction: 'horizontal',
-  // },
-  // '9': {
-  //   top: 0,
-  //   left: 0,
-  //   direction: 'horizontal',
-  // },
-  // '10': {
-  //   top: 0,
-  //   left: 0,
-  //   direction: 'horizontal',
-  // },
-};
+  {
+    direction: 'vertical',
+    ids: ['32', '33', '34', '35', '36'],
+  },
+  {
+    direction: 'horizontal',
+    ids: ['37', '38', '39', '40'],
+  },
+];
 
 // PenPlaceId: PenId | null
 const INITIAL_PEN_POSITIONS = {
-  '0': '0',
+  '0': null,
   '1': null,
-  '2': null,
-  '3': '1',
+  '2': '1',
+  '3': null,
   '4': null,
   '5': null,
   '6': null,
@@ -116,9 +97,9 @@ export function Screen40() {
   }
 
   function handleFinishGame() {
-    isGameCompleted.current = true;
-    stop();
-    setTimeout(next, BEFORE_NEXT_SCREEN_DELAY);
+    // isGameCompleted.current = true;
+    // stop();
+    // setTimeout(next, BEFORE_NEXT_SCREEN_DELAY);
   }
 
   function handleLose() {

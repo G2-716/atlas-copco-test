@@ -1,22 +1,23 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import mergeRefs from "react-merge-refs";
+import mergeRefs from 'react-merge-refs';
 import { useDrag } from 'react-dnd';
 import styled from 'styled-components';
 import { usePreview } from 'react-dnd-multi-backend'
 import { penHorizontal, penVertical } from '../../../constants/images';
 
 const StyledPen = styled.img`
+  -webkit-touch-callout: none;
   ${({ direction }) => `${getPrimarySize(direction)}: 100%`};
   object-fit: contain;
   padding: 8px;
   box-sizing: content-box;
   cursor: pointer;
+  z-index: 10;
 `;
 
 const StyledPenPreview = styled(StyledPen)`
   ${({ direction, size }) => `${getPrimarySize(direction)}: ${size}px`};
   box-sizing: border-box;
-  z-index: 10;
 `;
 
 function getPrimarySize(direction) {

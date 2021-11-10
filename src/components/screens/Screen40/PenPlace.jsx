@@ -5,11 +5,9 @@ import { isNil } from 'lodash';
 import { Pen } from './Pen';
 
 const StyledWrapper = styled.div`
-  position: absolute;
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
-  width: ${({ direction }) => direction === 'vertical' ? '10px' : '140px'};
-  height: ${({ direction }) => direction === 'vertical' ? '140px' : '10px'};
+  position: relative;
+  width: ${({ direction }) => direction === 'vertical' ? '1px' : '100%'};
+  height: ${({ direction }) => direction === 'vertical' ? '100%' : '1px'};
 `;
 
 const StyledPenPlaceWrapper = styled.div`
@@ -26,8 +24,7 @@ const StyledPenPlaceWrapper = styled.div`
 const StyledPenPlace = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${({ hovered }) => `rgba(167, 167, 167, ${hovered ? '0.75' : '0.45'})`};
-  border-radius: 18px;
+  background-color: ${({ hovered }) => `rgba(255, 255, 255, ${hovered ? '0.8' : '0.4'})`};
 `;
 
 const StyledPen = styled(Pen)`
@@ -56,7 +53,7 @@ export function PenPlace(props) {
   }), [pen, onDropPen]);
 
   return (
-    <StyledWrapper className={className} top={top} left={left} direction={direction}>
+    <StyledWrapper className={className} direction={direction}>
       <StyledPenPlaceWrapper ref={drop}>
         <StyledPenPlace hovered={hovered} />
       </StyledPenPlaceWrapper>
