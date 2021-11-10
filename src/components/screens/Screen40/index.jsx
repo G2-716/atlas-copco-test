@@ -90,12 +90,12 @@ const MAX_TIME_AVAILABLE = 40;
 export function Screen40() {
   const { next } = useProgress();
   const [positions, setPositions] = useState(INITIAL_PEN_POSITIONS);
-  const usedTryCount = useRef(0);
+  const usedTriesCount = useRef(0);
   const isGameCompleted = useRef(false);
 
   const { timeLeft, start, stop } = useTimer(MAX_TIME_AVAILABLE, { onFinish: handleLose });
 
-  function handlePositionsChange(positions) {
+  function handlePositionsChange(positions, placeId) {
     if (isGameCompleted.current) return;
 
     setPositions(positions);
@@ -105,9 +105,11 @@ export function Screen40() {
     if (isEmpty(xor(places, WIN_PEN_PLACES))) {
       handleWin();
     } else {
-      usedTryCount.current += 1;
+      if (!WIN_PEN_PLACES.includes(placeId)) {
+        usedTriesCount.current += 1;
+      }
 
-      if (usedTryCount.current >= MAX_TRIES_COUNT) {
+      if (usedTriesCount.current >= MAX_TRIES_COUNT) {
         handleLose();
       }
     }
