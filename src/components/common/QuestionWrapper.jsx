@@ -36,7 +36,7 @@ export const QuestionWrapper = (props) => {
         if (text.split(' ').length > 13) return <Text>{text}</Text>
         else return <TextBold>{text}</TextBold>
     }
-    //TODO: several questions wrapper = main one -> typical components, name them correctly
+
     return (
         <ScreenWrapper>
             <QuestionInfoWrapper>

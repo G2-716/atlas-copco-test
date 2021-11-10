@@ -48,7 +48,7 @@ export const DefaultQuestionWrapper = (props) => {
 
     const onAnswerChoose = (id) => {
         if (answers[question.id]) return;
-        if (typeof chooseFunc === 'function') chooseFunc();
+        if (typeof chooseFunc === 'function') chooseFunc(id);
         updateAnswer(question.id, id);
         setTimeout(next, AFTER_ANSWER_DELAY);
     };

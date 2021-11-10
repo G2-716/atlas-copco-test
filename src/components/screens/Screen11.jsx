@@ -5,8 +5,9 @@ import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { useTimer } from '../../hooks/useTimer';
 import { useProgress } from '../../hooks/useProgress';
 import { ImageStyled, ImageWrapper } from '../common/Image';
-import { helloPeople } from '../../constants/images';
+import { correct7, helloPeople, incorrect7 } from '../../constants/images';
 import { Modal } from '../common/Modal';
+import { getAnswerById } from '../../utils/getAnswerById';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
   height: auto;
@@ -14,13 +15,26 @@ const ImageWrapperStyled = styled(ImageWrapper)`
 `;
 
 export function Screen11() {
-    const { next } = useProgress();
-    const [isModal, setIsModal] = useState(false)
+    const questionId = '1';
+
+    const [isModal, setIsModal] = useState(false);
+    const [answer, setAnswer] = useState(null);
     const handleTimerFinish = () => {
         setIsModal(true);
     };
 
-    const question = getQuestionById('1');
+    const getImage = () => {
+        if (!answer) return helloPeople
+        if (answer.isCorrect) return correct7
+        return incorrect7;
+    }
+
+    const onGiveAnswer = (answerId) => {
+        stop();
+        setAnswer(getAnswerById(questionId, answerId));
+    }
+
+    const question = getQuestionById(questionId);
 
     const { timeLeft, start, stop } = useTimer(question.time, { onFinish: handleTimerFinish });
 
@@ -31,11 +45,11 @@ export function Screen11() {
             question={question}
             isShort={true}
             timeLeft={timeLeft}
-            chooseFunc={stop}
+            chooseFunc={onGiveAnswer}
         >
             {isModal && <Modal />}
             <ImageWrapperStyled>
-                <ImageStyled src={helloPeople} alt={''} />
+                <ImageStyled src={getImage()} alt={''} />
             </ImageWrapperStyled>
         </DefaultQuestionWrapper>
     );

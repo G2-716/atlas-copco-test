@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getQuestionById } from '../../utils/getQuestionById';
 import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { ImageStyled, ImageWrapper } from '../common/Image';
-import { companyPeople } from '../../constants/images';
+import {
+    companyPeople,
+    correct7,
+    correctCompany,
+    helloPeople,
+    incorrect7,
+    incorrectCompany
+} from '../../constants/images';
 import styled from 'styled-components';
+import { getAnswerById } from '../../utils/getAnswerById';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
   height: auto;
@@ -11,11 +19,28 @@ const ImageWrapperStyled = styled(ImageWrapper)`
 `;
 
 export function Screen12() {
-    const question = getQuestionById('2');
+    const questionId = '2';
+    const [answer, setAnswer] = useState(null);
+
+    const getImage = () => {
+        if (!answer) return companyPeople
+        if (answer.isCorrect) return correctCompany
+        return incorrectCompany;
+    }
+
+    const onGiveAnswer = (answerId) => {
+        setAnswer(getAnswerById(questionId, answerId));
+    }
+
+    const question = getQuestionById(questionId);
     return (
-        <DefaultQuestionWrapper question={question} isShort={false}>
+        <DefaultQuestionWrapper
+            question={question} 
+            isShort={false}
+            chooseFunc={onGiveAnswer}
+        >
             <ImageWrapperStyled>
-                <ImageStyled src={companyPeople} alt={''}/>
+                <ImageStyled src={getImage()} alt={''}/>
             </ImageWrapperStyled>
         </DefaultQuestionWrapper>
     );
