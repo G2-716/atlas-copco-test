@@ -12,6 +12,12 @@ import { Screen40 } from "./components/screens/Screen40";
 import { Screen41 } from "./components/screens/Screen41";
 import { Screen42 } from "./components/screens/Screen42";
 import { Screen11 } from './components/screens/Screen11';
+import { Screen12 } from './components/screens/Screen12';
+import { Screen13 } from './components/screens/Screen13';
+import { Screen14 } from './components/screens/Screen14';
+import { Screen15 } from './components/screens/Screen15';
+import { Screen16 } from './components/screens/Screen16';
+import { Screen17 } from './components/screens/Screen17';
 
 export const screens = [
     {
@@ -59,6 +65,30 @@ export const screens = [
     },
     {
         component: Screen11,
+        preloadImages: [],
+    },
+    {
+        component: Screen12,
+        preloadImages: [],
+    },
+    {
+        component: Screen13,
+        preloadImages: [],
+    },
+    {
+        component: Screen14,
+        preloadImages: [],
+    },
+    {
+        component: Screen15,
+        preloadImages: [],
+    },
+    {
+        component: Screen16,
+        preloadImages: [],
+    },
+    {
+        component: Screen17,
         preloadImages: [],
     },
     {

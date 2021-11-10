@@ -33,7 +33,7 @@ const ComponentWrapper = styled.div`
     background: #0098C7;
     width: 325px;
     max-height: 700px;
-    height: 700px;
+    height: 100%;
     max-width: 325px;
     position: absolute;
     top: 50%;

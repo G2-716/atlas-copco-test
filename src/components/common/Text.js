@@ -5,7 +5,7 @@ export const Text = styled.p`
   font-weight: 600;
   letter-spacing: 0.01em;
   margin-bottom: 10px;
-    @media screen and (min-width: 320px){
+    @media screen and (max-width: 320px){
         font-size: 16px;
     }
 `

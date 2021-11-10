@@ -9,6 +9,8 @@ import {FemaleIcon} from "../svg/Female";
 import {MaleIcon} from "../svg/Male";
 import {introBgElem, introPeople} from "../../constants/images";
 import {ImageStyled, ImageWrapper} from "../common/Image";
+import { LogoStyled } from '../common/LogoStyled';
+import { Button } from '../common/Button';
 
 const Wrapper = styled(ScreenWrapper)`
   padding-top: 4.61%;
@@ -22,17 +24,6 @@ const BgElement = styled.img`
   @media screen and (max-width: 320px){ 
       width: 58px;
       height: 75px;
-  }
-`
-const LogoStyled = styled(Logo)`
-  height: 88px;
-  width: 135px;
-  margin-bottom: 3.9%;
-  
-  @media screen and (max-width: 320px){ 
-      height: 70px;
-      width: 107px;
-      margin-bottom: 3.2%;
   }
 `
 
@@ -73,45 +64,66 @@ const Female = styled(FemaleIcon)`
     height: 60px;
 `
 
+const ImageWrapperStyled = styled(ImageWrapper)`
+    @media screen and (max-height: 700px){
+        height: 34%;
+    }
+    
+    @media screen and (max-height: 600px){
+        height: 30%;
+    }
+    
+    @media screen and (min-width: 640px){
+        height: 35%;
+    }
+`;
+
+const Image = styled(ImageStyled)`
+    width: auto;
+`;
 
 const TextStyled = styled(Text)`
     max-width: 290px;
-`
+    font-size: 16px;
+`;
+
+const ButtonStyled = styled(Button)`
+    margin-top: 10px;
+`;
+
 export function Screen1() {
   const { next, updateUser, user } = useProgress();
 
   function handleNameChange(event) {
     updateUser('name', event.target.value);
-    if (user.sex) next();
   }
 
   function handleSexChange(event) {
     updateUser('sex', event.target.value);
-    if (user.name) next();
   }
 
   return (
     <Wrapper>
-    <BgElement src={introBgElem} alt={''}/>
-    <LogoStyled />
-    <Title>Привет!</Title>
-    <TextStyled>
-        Atlas Copco приготовила для вас тренажер нестандартного собеседования. Всегда приятно попробовать себя в чем-то новом.
-    </TextStyled>
-    <TextBold>
-        Познакомимся?
-    </TextBold>
-    <NameInput type="text" onChange={handleNameChange} placeholder={'Твоё имя'}/>
-    <RadioWrapper>
-      <RadioBtn id='femaleRadio' type="radio" name='sex' value='female' onChange={handleSexChange} />
-      <label htmlFor={'femaleRadio'}> <Female active={user.sex === 'female'}/> </label>
-      <RadioBtn id='maleRadio' type="radio" name='sex' value='male' onChange={handleSexChange} />
-      <label htmlFor={'maleRadio'}>  <Male  active={user.sex === 'male'}/> </label>
-    </RadioWrapper>
-    <ImageWrapper>
-      <ImageStyled src={introPeople} alt={''} />
-    </ImageWrapper>
-      {/*<button onClick={next}>Дальше</button>*/}
+        <BgElement src={introBgElem} alt={''}/>
+        <LogoStyled />
+        <Title>Привет!</Title>
+        <TextStyled>
+            Atlas Copco приготовила для вас тренажер нестандартного собеседования. Всегда приятно попробовать себя в чем-то новом.
+        </TextStyled>
+        <TextBold>
+            Познакомимся?
+        </TextBold>
+        <NameInput type="text" onChange={handleNameChange} placeholder={'Твоё имя'}/>
+        <RadioWrapper>
+          <RadioBtn id='femaleRadio' type="radio" name='sex' value='female' onChange={handleSexChange} />
+          <label htmlFor={'femaleRadio'}> <Female active={user.sex === 'female'}/> </label>
+          <RadioBtn id='maleRadio' type="radio" name='sex' value='male' onChange={handleSexChange} />
+          <label htmlFor={'maleRadio'}>  <Male  active={user.sex === 'male'}/> </label>
+        </RadioWrapper>
+          <ButtonStyled onClick={next}>Играть</ButtonStyled>
+        <ImageWrapperStyled>
+          <Image src={introPeople} alt={''} />
+        </ImageWrapperStyled>
     </Wrapper>
   );
 }
