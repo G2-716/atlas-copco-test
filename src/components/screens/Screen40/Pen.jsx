@@ -1,5 +1,7 @@
-import { useDrag, DragPreviewImage } from 'react-dnd';
+import React, { useEffect } from 'react';
+import { useDrag, useDragLayer } from 'react-dnd';
 import styled from 'styled-components';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 import { penHorizontal, penVertical } from '../../../constants/images';
 
 const StyledPen = styled.img`
@@ -9,6 +11,45 @@ const StyledPen = styled.img`
   box-sizing: content-box;
   cursor: pointer;
 `;
+
+function getPreviewStyles(differenceFromInitialOffset) {
+  if (!differenceFromInitialOffset) {
+    return {
+      display: 'none',
+    };
+  }
+  const { x, y } = differenceFromInitialOffset;
+  const transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+
+  return {
+    transform,
+    pointerEvents: 'none',
+    willChange: 'transform',
+    WebkitTransform: transform,
+    zIndex: 10,
+  };
+}
+
+const PenPreview = ({ className, pen, direction }) => {
+  const { differenceFromInitialOffset, isDragging } = useDragLayer((monitor) => ({
+    differenceFromInitialOffset: monitor.getDifferenceFromInitialOffset(),
+    isDragging: monitor.isDragging(),
+  }));
+
+  if (!isDragging) {
+    return null;
+  }
+
+  return (
+      <StyledPen
+        className={className}
+        direction={direction}
+        style={getPreviewStyles(differenceFromInitialOffset)}
+        src={pen}
+        alt=""
+      />
+  );
+};
 
 export function Pen(props) {
   const { id, className, direction } = props;
@@ -23,8 +64,14 @@ export function Pen(props) {
 
   const pen = direction === 'vertical' ? penVertical : penHorizontal;
 
+  useEffect(() => {
+    dragPreview(getEmptyImage());
+  }, []);
+
   if (isDragging) {
-    return <DragPreviewImage src={pen} connect={dragPreview} />;
+    return (
+      <PenPreview className={className} direction={direction} pen={pen} preview={dragPreview} />
+    );
   }
 
   return (

@@ -19,7 +19,7 @@ const StyledPenPlaceWrapper = styled.div`
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  padding: 4px;
+  padding: 12px;
   box-sizing: content-box;
 `;
 
