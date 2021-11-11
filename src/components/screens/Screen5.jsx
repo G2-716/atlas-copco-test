@@ -34,15 +34,6 @@ const CircleStyled = styled(Circle)`
     background: #42CC58;
 `;
 
-const CircleWrapper = styled.div`
-    overflow: hidden;
-    position: absolute;
-    width: 120px;
-    height: 123px;
-    top: 0;
-    right: 0;
-`;
-
 const ImageWrapperStyled = styled(ImageWrapper)`
     width: 100%;
     height: auto;
@@ -63,13 +54,10 @@ export function Screen5() {
 
   return (
     <Wrapper>
-        <CircleWrapper>
-            <CircleStyled />
-        </CircleWrapper>
+        <CircleStyled />
         <TextWrapper>
             <TextBold>
                 {'Ой, спасибо вам,\nчто подождали!'}
-
             </TextBold>
             <Text>
                 {'У меня сейчас собеседование,\n' +

@@ -41,35 +41,50 @@ const ButtonStyled = styled(Button)`
     height: 50px;
 `;
 
-const CircleWrapper = styled.div`
-    overflow: hidden;
-    position: absolute;
+
+const CircleStyled = styled(Circle)`
+    max-width: 474px;
+    max-height: 474px;
+    border-radius: 300px;
+    right: -70vw;
+    bottom: -9vh;
     z-index: -2;
-    bottom: 0;
-    right: 0;
-    height: 440px;
-    max-height: 59.7%;
-    width: 183px;
+    width: 114.5vw;
+    height: 114.5vw;
     
-    @media screen and (max-height: 700px){
-      max-height: 55%;
+    @media screen and (max-height: 600px){
+      right: -77vw;
+      bottom: -14vh;
+    }
+    
+    @media screen and (max-height: 500px){
+      right: -80vw;
+      bottom: -50vw;
+    }
+    
+    @media screen and (max-height: 300px){
+        display: none;
     }
     
     @media screen and (min-width: 640px){
-        width: 100px;
+      min-width: auto;
+      min-height: auto;
+      right: -320px;
+      bottom: -55px;
+      width: 450px;
+      height: 450px;
     }
     
-    @media screen and (max-width: 330px){
-        width: 110px;
+    @media screen and (min-width: 640px) and (max-height: 690px){
+      bottom: -23%;
     }
     
-`
-
-const CircleStyled = styled(Circle)`
-    display: block;
-    width: 474px;
-    height: 474px;
-    border-radius: 300px;
+    @media screen and (max-height: 590px) and (orientation: landscape){
+      right: -250px;
+      bottom: -200px;
+      width: 400px;
+      height: 400px;
+    } 
 `
 
 const ImageWrapperStyled = styled(ImageWrapper)`
@@ -127,9 +142,7 @@ export function Screen20() {
             </Text>
         </TextWrapper>
         <ButtonStyled onClick={onLandingBtnClick}>Узнать больше</ButtonStyled>
-        <CircleWrapper>
-            <CircleStyled />
-        </CircleWrapper>
+        <CircleStyled />
         <ImageWrapperStyled>
             <Image src={phoneCall} alt={''}/>
         </ImageWrapperStyled>

@@ -19,26 +19,26 @@ const CircleStyled = styled(Circle)`
     } 
 `;
 
-const TriangleWrapper = styled.div`
-    width: 87.922%;
-    height: 31.25%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-`;
-
 const TriangleStyled = styled(Triangle)`
     position: absolute;
-    width: 545px;
-    height: 475px;
+    max-width: 545px;
+    width: 131.6%;
+    max-height: 475px;
+    height: 64.5%;
     left: -245px;
     bottom: -245px;
     
-    @media screen and (max-height: 520px) and (orientation: landscape){
-        width: 320px;
-        height: 300px;
+    @media screen and (min-width: 640px){
+        width: 540px;
+        height: 470px;
+    }
+    
+    @media screen and (max-height: 575px) and (orientation: landscape){
+        width: 480px;
+        height: 100%;
     } 
+    
+    
 `;
 
 const InfoWrapper = styled.div`
@@ -60,9 +60,7 @@ export function Screen3() {
             <Title>Заходим в лифт :)</Title>
         </InfoWrapper>
         <Button onClick={next}>Зайти</Button>
-        <TriangleWrapper>
-            <TriangleStyled />
-        </TriangleWrapper>
+        <TriangleStyled />
     </ScreenWrapper>
   );
 }
