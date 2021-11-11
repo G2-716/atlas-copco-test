@@ -8,19 +8,14 @@ import { coffeeMan } from '../../constants/images';
 import { Button } from './Button';
 
 const Wrapper = styled(ScreenWrapper)`
-    padding-left: 52px;
     padding-top: 8.1%;
     
     @media screen and (max-height: 600px){
       padding-top: 7.3%;
     }
     
-    @media screen and (max-width: 300px){
-      padding-left: 20px;
-    }
-    
     @media screen and (min-width: 640px) and (max-height: 655px){
-    padding-top: 50px;
+      padding-top: 50px;
     }
 `;
 
@@ -31,16 +26,11 @@ const TextWrapper = styled.div`
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: 64%;
     max-height: 425px;
-    margin-left: -52px;
     display: flex;
     justify-content: flex-end;
     
     @media screen and (max-height: 600px){
       height: 50%;
-    }
-    
-    @media screen and (max-width: 300px){
-      margin-left: -20px;
     }
 `;
 
