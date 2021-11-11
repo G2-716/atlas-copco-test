@@ -13,7 +13,7 @@ import { Timer } from '../common/Timer';
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: 600px;
     max-height: none;
-    width: 345px;
+    width: 360px;
 
     @media screen and (max-height: 700px){
         height: 500px;

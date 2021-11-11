@@ -18,19 +18,19 @@ const AnswersWrapper = styled.div`
 const AnswerWrapper = styled.div`
     border: 2px solid white;
     cursor: pointer;
-    width:  ${props => props.isShort ? 'calc(48% - 5px)' : '100%'};
+    width:  100%;
     padding: 10px 36px 10px 24px;
-    margin: ${props => props.isShort ? '0 5px 5px 0' : '0'};
+    background: ${({ isCorrect, isSelected }) => isSelected ? (isCorrect ? '#42CC58' : '#FF0000') : 'none'};
     
     & + & {
-        margin-top: ${props => props.isShort ? '0' : '7px'};
+        margin-top: 7px;
     }
     
     @media screen and (max-height: 600px){
         padding: 5px 19px 5px 15px;
         font-size: 14px;
         & + & {
-            margin-top: ${props => props.isShort ? '0' : '5px'};
+            margin-top: 5px;
         }
     }
     
@@ -43,8 +43,18 @@ const AnswerWrapper = styled.div`
     }
 `;
 
-const SelectedAnswerWrapper = styled(AnswerWrapper)`
-    background: ${({ isCorrect }) => isCorrect ? '#42CC58' : '#FF0000'};
+const AnswerWrapperShort = styled(AnswerWrapper)`
+    width: calc(48% - 5px);
+    margin: 0 5px 5px 0;
+    & + & {
+        margin-top: 0;
+    }
+    
+    @media screen and (max-height: 600px){
+        & + & {
+            margin-top: 0;
+        }
+    }
 `;
 
 export const DefaultQuestionWrapper = (props) => {
@@ -60,22 +70,17 @@ export const DefaultQuestionWrapper = (props) => {
     };
 
     const renderAnswerWrapper = (answer) => {
-        return answers[question.id] && answers[question.id] === answer.id ? (
-            <SelectedAnswerWrapper
+        const Component = isShort ? AnswerWrapperShort : AnswerWrapper;
+        return (
+            <Component
                 key={answer.id}
+                isShort={isShort}
+                isSelected={answers[question.id] && answers[question.id] === answer.id}
                 isCorrect={answer.isCorrect}
-                isShort={isShort}
-            >
-                {answer.text}
-            </SelectedAnswerWrapper>
-        ) : (
-            <AnswerWrapper
-                key={answer.id}
-                isShort={isShort}
                 onClick={()=>onAnswerChoose(answer.id)}
             >
                 {answer.text}
-            </AnswerWrapper>
+            </Component>
         )
     }
 

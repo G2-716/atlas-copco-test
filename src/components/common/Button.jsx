@@ -5,7 +5,9 @@ const ButtonStyled = styled.button`
     outline: none;
     border: 1px solid white;
     background: none;
+    opacity: ${ ({ disabled }) => disabled ? 0.6 : 1};
     display: block;
+    pointer-events: ${ ({ disabled }) => disabled ? 'none' : 'auto'};
     font-size: 18px;
     width: 127px;
     height: 55px;

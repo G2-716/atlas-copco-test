@@ -171,7 +171,7 @@ export function Screen1() {
           <RadioBtn id='maleRadio' type="radio" name='sex' value='male' onChange={handleSexChange} />
           <label htmlFor={'maleRadio'}>  <Male  active={user.sex === 'male'}/> </label>
         </RadioWrapper>
-          <ButtonStyled onClick={next}>Играть</ButtonStyled>
+        <ButtonStyled disabled={!(user.sex && user.name)} onClick={next}>Играть</ButtonStyled>
         <ImageWrapperStyled>
           <Image src={introPeople} alt={''} />
         </ImageWrapperStyled>
