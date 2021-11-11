@@ -6,7 +6,6 @@ const Wrapper = styled.div`
     height: 100%;
     padding: 27px 29px 10px 29px;
     white-space: pre-wrap;
-    overflow: hidden;
     @media screen and (max-height: 520px) and (orientation: landscape){
       padding-top: 0;
     } 

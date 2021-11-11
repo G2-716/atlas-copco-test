@@ -69,15 +69,15 @@ const TextStyled = styled(TextBold)`
     }
     
     @media screen and (max-width: 300px){
-        top: 45px;
         left: 110px;
         font-size: 14px;
     }
     
     @media screen and (min-width: 640px){
-        top: 55px;
-        left: 130px;
+        top: 46px;
+        left: 122px;
     }  
+    
      
     @media screen and (min-width: 640px) and (max-height: 685px){
         top: 38px;
@@ -162,6 +162,17 @@ const ButtonStyled = styled(Button)`
     }
 `;
 
+const TextSmallScreens = styled(TextBold)`
+  display: none;
+  @media screen and (max-height: 520px) and (orientation: landscape){
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 36px;
+    font-size: 16px;
+  } 
+`
+
 export function Screen4() {
   const { updateProgress, next } = useProgress();
 
@@ -193,6 +204,9 @@ export function Screen4() {
                 {'Подождите меня!\nПодождите!'}
             </TextStyled>
         </ImageWrapperStyled>
+        <TextSmallScreens>
+            {'Подождите меня!\nПодождите!'}
+        </TextSmallScreens>
         <ButtonWrapper>
             <ButtonStyled onClick={handleWait}>Подождать</ButtonStyled>
             <ButtonStyled onClick={handleDontWait}>Не ждать</ButtonStyled>
