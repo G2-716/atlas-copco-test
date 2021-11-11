@@ -27,9 +27,10 @@ const Image = styled.img`
 const ComponentWrapper = styled.div`
   ${({ styles }) => styles};
   width: 100%;
-
+  overflow: hidden;
+  position: relative;
+  
   @media screen and (min-width: 640px) {
-    overflow: hidden;
     background: #0098C7;
     width: 325px;
     max-height: 700px;
