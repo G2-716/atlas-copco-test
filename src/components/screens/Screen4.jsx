@@ -169,7 +169,7 @@ export function Screen4() {
     handleDontWait();
   }
 
-  const { timeLeft, start } = useTimer(7, { onFinish: handleTimerFinish });
+  const { timeLeft, start } = useTimer(3, { onFinish: handleTimerFinish });
 
   function handleWait() {
     updateProgress('wait', true);

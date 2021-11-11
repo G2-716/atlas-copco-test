@@ -73,7 +73,7 @@ const ImageWrapperStyled = styled(ImageWrapper)`
     max-height: 46%;
 `;
 
-export function Screen41() {
+export function Screen19() {
   const { next } = useProgress();
 
   return (

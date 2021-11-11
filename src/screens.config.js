@@ -15,9 +15,9 @@ import { Screen14 } from './components/screens/Screen14';
 import { Screen15 } from './components/screens/Screen15';
 import { Screen16 } from './components/screens/Screen16';
 import { Screen17 } from './components/screens/Screen17';
-import { Screen40 } from "./components/screens/Screen40";
-import { Screen41 } from "./components/screens/Screen41";
-import { Screen42 } from "./components/screens/Screen42";
+import { Screen18 } from "./components/screens/Screen18";
+import { Screen19 } from "./components/screens/Screen19";
+import { Screen20 } from "./components/screens/Screen20";
 import {
     coffeeMan,
     coffeeWoman,
@@ -110,15 +110,15 @@ export const screens = [
         preloadImages: [],
     },
     {
-        component: Screen40,
+        component: Screen18,
         preloadImages: [dialog, peopleBb],
     },
     {
-        component: Screen41,
+        component: Screen19,
         preloadImages: [phoneCall],
     },
     {
-        component: Screen42,
+        component: Screen20,
         preloadImages: [],
     },
 ];

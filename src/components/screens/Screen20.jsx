@@ -107,11 +107,11 @@ const Image = styled(ImageStyled)`
     width: auto;
 `;
 
-export function Screen42() {
+export function Screen20() {
   const { user } = useProgress();
 
   const onLandingBtnClick = () => {
-      window.open('https://fut.ru/companies/atlas-copco/', '_blank');
+      window.open('https://www.atlascopco.com/ru-ru/jobs', '_blank');
   }
 
   return (

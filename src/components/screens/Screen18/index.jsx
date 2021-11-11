@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { xor, isEmpty } from 'lodash';
 import { useProgress } from '../../../hooks/useProgress';
 import { ScreenWrapper } from '../../common/ScreenWrapper';
 import { useTimer } from '../../../hooks/useTimer';
 import { normalizeSecs } from '../../../utils/normalizeSecs';
-import { BEFORE_NEXT_SCREEN_DELAY } from '../../../constants/delays';
 import { Board } from './Board';
 import { hasPen } from './PenPlace';
+import { Button } from '../../common/Button';
 
 const PEN_PLACES = [
   {
@@ -53,42 +53,36 @@ const INITIAL_PEN_POSITIONS = {
   '1': null,
   '2': '1',
   '3': null,
-  '4': null,
+  '4': '2',
   '5': null,
-  '6': null,
+  '6': '3',
   '7': null,
   '8': null,
-  '9': null,
+  '9': '4',
   '10': null,
 };
 
 // PenPlaceId[]
 const WIN_PEN_PLACES = ['1', '2'];
 
-const MAX_TRIES_COUNT = 2;
-const MAX_TIME_AVAILABLE = 40;
+const MAX_TRIES_COUNT = 1;
+const MAX_TIME_AVAILABLE = 60;
 
-export function Screen40() {
+export function Screen18() {
   const { next } = useProgress();
   const [positions, setPositions] = useState(INITIAL_PEN_POSITIONS);
   const usedTriesCount = useRef(0);
   const isGameCompleted = useRef(false);
 
-  const { timeLeft, start, stop } = useTimer(MAX_TIME_AVAILABLE, { onFinish: handleLose });
+  const { timeLeft, start, stop } = useTimer(MAX_TIME_AVAILABLE, { onFinish: checkPositions });
 
-  function handlePositionsChange(positions, placeId) {
-    if (isGameCompleted.current) return;
-
-    setPositions(positions);
-
+  function checkPositions() {
     const places = Object.keys(positions).filter(place => hasPen(positions[place]));
 
     if (isEmpty(xor(places, WIN_PEN_PLACES))) {
       handleWin();
     } else {
-      if (!WIN_PEN_PLACES.includes(placeId)) {
-        usedTriesCount.current += 1;
-      }
+      usedTriesCount.current += 1;
 
       if (usedTriesCount.current >= MAX_TRIES_COUNT) {
         handleLose();
@@ -96,10 +90,15 @@ export function Screen40() {
     }
   }
 
+  function handlePositionsChange(positions) {
+    if (isGameCompleted.current) return;
+    setPositions(positions);
+  }
+
   function handleFinishGame() {
-    // isGameCompleted.current = true;
-    // stop();
-    // setTimeout(next, BEFORE_NEXT_SCREEN_DELAY);
+    isGameCompleted.current = true;
+    stop();
+    next();
   }
 
   function handleLose() {
@@ -110,13 +109,15 @@ export function Screen40() {
     handleFinishGame();
   }
 
-  // useEffect(start, []);
+  useEffect(start, []);
 
   return (
     <ScreenWrapper>
       <div>{normalizeSecs(timeLeft)}</div>
       <br/>
       <Board places={PEN_PLACES} positions={positions} onPositionsChange={handlePositionsChange} />
+      <br/>
+      <Button onClick={checkPositions}>Ответить</Button>
     </ScreenWrapper>
   );
 }

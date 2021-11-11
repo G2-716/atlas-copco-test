@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { ScreenWrapper } from '../common/ScreenWrapper';
 import { useProgress } from '../../hooks/useProgress';
-import { INTERVIEWER_NAME } from '../../constants/names';
 import { Text, TextBold } from '../common/Text';
 import { Button } from '../common/Button';
 import { Circle } from '../common/Circle';
@@ -47,13 +46,13 @@ export function Screen6() {
     <Wrapper>
         <CircleStyled/>
         <TextBold>
-          {`Здравствуйте,\n${INTERVIEWER_NAME}!`}
+          {`Здравствуйте,\nСергей!`}
         </TextBold>
         <Text>
             {`А вы, должно быть,\n${user.name}?`}
         </Text>
         <Text>
-            Проходите за {INTERVIEWER_NAME}, это ваш интервьюер.
+            Проходите за Сергеем, это ваш интервьюер.
         </Text>
         <ImageWrapperStyled>
             <Image src={coffeeWoman} />

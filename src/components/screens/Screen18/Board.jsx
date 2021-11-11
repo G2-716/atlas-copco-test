@@ -46,7 +46,7 @@ export function Board(props) {
   function handlePenDrop(placeId, penId) {
     const prev = positions;
     const prevPlaceId = Object.keys(prev).find(placeId => prev[placeId] === penId);
-    onPositionsChange?.({ ...prev, [prevPlaceId]: null, [placeId]: penId }, placeId, penId);
+    onPositionsChange?.({ ...prev, [prevPlaceId]: null, [placeId]: penId });
   }
 
   return (
