@@ -4,36 +4,25 @@ import { getQuestionById } from '../../utils/getQuestionById';
 import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { useTimer } from '../../hooks/useTimer';
 import { ImageStyled, ImageWrapper } from '../common/Image';
-import { correct7, helloPeople, incorrect7 } from '../../constants/images';
+import { peopleThinking } from '../../constants/images';
 import { Modal } from '../common/Modal';
-import { getAnswerById } from '../../utils/getAnswerById';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
-    height: auto;
-    max-height: 46%;
+    height: 25%;
 `;
 
-export function Screen11() {
-    const questionId = '1';
-    const [isModal, setIsModal] = useState(false);
-    const [answer, setAnswer] = useState(null);
+const Image = styled(ImageStyled)`
+    width: auto;
+`;
+
+export function Screen14() {
+    const [isModal, setIsModal] = useState(false)
 
     const handleTimerFinish = () => {
-        setIsModal(true);
+        setIsModal(true)
     };
 
-    const getImage = () => {
-        if (!answer) return helloPeople
-        if (answer.isCorrect) return correct7
-        return incorrect7;
-    }
-
-    const onGiveAnswer = (answerId) => {
-        stop();
-        setAnswer(getAnswerById(questionId, answerId));
-    }
-
-    const question = getQuestionById(questionId);
+    const question = getQuestionById('4');
 
     const { timeLeft, start, stop } = useTimer(question.time, { onFinish: handleTimerFinish });
 
@@ -42,13 +31,13 @@ export function Screen11() {
     return (
         <DefaultQuestionWrapper
             question={question}
-            isShort={true}
+            isShort={false}
             timeLeft={timeLeft}
-            chooseFunc={onGiveAnswer}
+            chooseFunc={stop}
         >
             {isModal && <Modal />}
             <ImageWrapperStyled>
-                <ImageStyled src={getImage()} alt={''} />
+                <Image src={peopleThinking} alt={''} />
             </ImageWrapperStyled>
         </DefaultQuestionWrapper>
     );

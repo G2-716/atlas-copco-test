@@ -35,12 +35,12 @@ const CircleStyled = styled(Circle)`
 `;
 
 const CircleWrapper = styled.div`
-  overflow: hidden;
-  position: absolute;
-  width: 120px;
-  height: 123px;
-  top: 0;
-  right: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 120px;
+    height: 123px;
+    top: 0;
+    right: 0;
 `;
 
 const ImageWrapperStyled = styled(ImageWrapper)`
@@ -48,12 +48,13 @@ const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
     max-height: 77%;
     margin-left: -12%;
+    
     @media screen and (max-width: 300px){
         margin-left: -10px;
     }
     
-    @media screen and (max-height: 600px) and (max-width: 640px){
-           max-height: 66%;
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        max-height: 64%;
     }
 `
 

@@ -20,6 +20,14 @@ import peoplePhone from '../static/images/peoplePhone.png';
 import socialGreen from '../static/images/socialGreen.png';
 import socialYellow from '../static/images/socialYellow.png';
 import socialRed from '../static/images/socialRed.png';
+import dialog from '../static/images/dialog.png';
+import companyPeople from '../static/images/companyPeople.png';
+import peopleRocket from '../static/images/peopleRocket.png';
+import peopleThinking from '../static/images/peopleThinking.png';
+import peopleLightning from '../static/images/peopleLightning.png';
+import peopleFlying from '../static/images/peopleFlying.png';
+import peopleBb from '../static/images/peopleBb.png';
+import phoneCall from '../static/images/phoneCall.png';
 
 export {
     iphone,
@@ -43,5 +51,13 @@ export {
     peoplePhone,
     socialGreen,
     socialRed,
-    socialYellow
+    socialYellow,
+    dialog,
+    companyPeople,
+    peopleRocket,
+    peopleThinking,
+    peopleLightning,
+    peopleFlying,
+    peopleBb,
+    phoneCall
 };
