@@ -6,6 +6,7 @@ import { useTimer } from '../../hooks/useTimer';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { peopleThinking } from '../../constants/images';
 import { Modal } from '../common/Modal';
+import { useProgress } from '../../hooks/useProgress';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: 25%;
@@ -17,6 +18,7 @@ const Image = styled(ImageStyled)`
 
 export function Screen14() {
     const [isModal, setIsModal] = useState(false)
+    const { next } = useProgress();
 
     const handleTimerFinish = () => {
         setIsModal(true)
@@ -35,7 +37,7 @@ export function Screen14() {
             timeLeft={timeLeft}
             chooseFunc={stop}
         >
-            {isModal && <Modal />}
+            {isModal && <Modal onClick={next} />}
             <ImageWrapperStyled>
                 <Image src={peopleThinking} alt={''} />
             </ImageWrapperStyled>

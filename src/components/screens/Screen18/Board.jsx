@@ -6,12 +6,22 @@ import { DndProvider, TouchTransition, MouseTransition } from 'react-dnd-multi-b
 import { PenPlace } from './PenPlace';
 
 const Wrapper = styled.div`
+  width: 100%;
+`;
+
+const WrapperInner = styled.div`
   position: relative;
+  padding-top: 100%;
 `;
 
 const RowsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const HorizontalRow = styled.div`
@@ -21,7 +31,7 @@ const HorizontalRow = styled.div`
 const VerticalRow = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 70px;
+  flex-grow: 1;
 `;
 
 const HTML5toTouch = {
@@ -41,7 +51,7 @@ const HTML5toTouch = {
 };
 
 export function Board(props) {
-  const { places, positions, onPositionsChange } = props;
+  const { className, places, positions, onPositionsChange } = props;
 
   function handlePenDrop(placeId, penId) {
     const prev = positions;
@@ -51,28 +61,30 @@ export function Board(props) {
 
   return (
     <DndProvider options={HTML5toTouch}>
-      <Wrapper>
-        <RowsContainer>
-          {places.map(({ direction, ids }, index) => {
-            const Row = direction === 'vertical' ? VerticalRow : HorizontalRow;
+      <Wrapper className={className}>
+        <WrapperInner>
+          <RowsContainer>
+            {places.map(({ direction, ids }, index) => {
+              const Row = direction === 'vertical' ? VerticalRow : HorizontalRow;
 
-            return (
-              <Row key={index}>
-                {ids.map((placeId) => {
-                  return (
-                    <PenPlace
-                      key={placeId}
-                      id={placeId}
-                      direction={direction}
-                      pen={positions[placeId]}
-                      onDropPen={(penId) => handlePenDrop(placeId, penId)}
-                    />
-                  );
-                })}
-              </Row>
-            );
-          })}
-        </RowsContainer>
+              return (
+                <Row key={index}>
+                  {ids.map((placeId) => {
+                    return (
+                      <PenPlace
+                        key={placeId}
+                        id={placeId}
+                        direction={direction}
+                        pen={positions[placeId]}
+                        onDropPen={(penId) => handlePenDrop(placeId, penId)}
+                      />
+                    );
+                  })}
+                </Row>
+              );
+            })}
+          </RowsContainer>
+        </WrapperInner>
       </Wrapper>
     </DndProvider>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useProgress } from '../../hooks/useProgress';
 import { Text, TextBold } from './Text';
 import { Button } from './Button';
 
@@ -41,19 +40,20 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const Modal = (props) => {
-    const { next } = useProgress();
     const {
+        className,
         text = 'К сожалению,\nвы не успели дать ответ.\n\nПродолжим?',
         additionalText = '',
-        btnText = 'Продолжить'
+        btnText = 'Продолжить',
+        onClick,
     } = props;
 
     return (
         <ModalWrapper>
-            <ModalWindow>
+            <ModalWindow className={className}>
                 <TextStyled>{text}</TextStyled>
                 <Text>{additionalText}</Text>
-                <ButtonStyled onClick={next}>{btnText}</ButtonStyled>
+                <ButtonStyled onClick={onClick}>{btnText}</ButtonStyled>
             </ModalWindow>
         </ModalWrapper>
     )
