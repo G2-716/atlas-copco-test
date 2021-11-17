@@ -103,11 +103,6 @@ const TriangleStyled = styled(Triangle)`
     right: -121px;
     top: -128px;
   }
-  
-  @media screen and (max-height: 575px) and (orientation: landscape){
-    //width: 480px;
-    //height: 100%;
-  }
 `;
 
 const PEN_PLACES = [
