@@ -17,6 +17,8 @@ const AnswersWrapper = styled.div`
 
 const AnswerWrapper = styled.div`
     border: 2px solid white;
+    position: relative;
+    z-index: 10;
     cursor: pointer;
     width:  100%;
     padding: 10px 36px 10px 24px;
