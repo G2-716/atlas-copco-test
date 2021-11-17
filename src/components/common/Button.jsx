@@ -14,6 +14,8 @@ const ButtonStyled = styled.button`
     text-align: center;
     cursor: pointer;
     color: white;
+    position: relative;
+    z-index: 20;
     
     @media screen and (max-height: 520px) and (orientation: landscape){
       height: 30px;
