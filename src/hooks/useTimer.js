@@ -19,6 +19,10 @@ export function useTimer(timeInSecs, { onFinish } = {}) {
     timerRef.current = null;
   }
 
+  function restart() {
+    setTimeLeft(timeInSecs);
+  }
+
   useDidMountEffect(() => {
     if (timeLeft === 0) {
       stop();
@@ -28,5 +32,5 @@ export function useTimer(timeInSecs, { onFinish } = {}) {
     }
   }, [timeLeft]);
 
-  return { timeLeft, start, stop };
+  return { timeLeft, start, stop, restart };
 }

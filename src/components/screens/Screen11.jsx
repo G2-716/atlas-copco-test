@@ -7,6 +7,7 @@ import { ImageStyled, ImageWrapper } from '../common/Image';
 import { correct7, helloPeople, incorrect7 } from '../../constants/images';
 import { Modal } from '../common/Modal';
 import { getAnswerById } from '../../utils/getAnswerById';
+import { useProgress } from '../../hooks/useProgress';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
@@ -17,6 +18,7 @@ export function Screen11() {
     const questionId = '1';
     const [isModal, setIsModal] = useState(false);
     const [answer, setAnswer] = useState(null);
+    const { next } = useProgress();
 
     const handleTimerFinish = () => {
         setIsModal(true);
@@ -46,7 +48,7 @@ export function Screen11() {
             timeLeft={timeLeft}
             chooseFunc={onGiveAnswer}
         >
-            {isModal && <Modal />}
+            {isModal && <Modal onClick={next} />}
             <ImageWrapperStyled>
                 <ImageStyled src={getImage()} alt={''} />
             </ImageWrapperStyled>
