@@ -3,10 +3,50 @@ import { xor, isEmpty } from 'lodash';
 import { useProgress } from '../../../hooks/useProgress';
 import { ScreenWrapper } from '../../common/ScreenWrapper';
 import { useTimer } from '../../../hooks/useTimer';
-import { normalizeSecs } from '../../../utils/normalizeSecs';
 import { Board } from './Board';
 import { hasPen } from './PenPlace';
-import { Button } from '../../common/Button';
+import styled from 'styled-components';
+import { QuestionNumber } from '../../common/QuestionNumber';
+import { Text, TextBold } from '../../common/Text';
+import { getQuestionById } from '../../../utils/getQuestionById';
+import { Triangle } from '../../svg/Triangle';
+
+const TextWrapper = styled.div`
+  margin-top: 24px;
+`;
+
+const StyledText = styled(Text)`
+  font-size: 16px;
+`;
+
+const StyledTextBold = styled(TextBold)`
+  font-size: 16px;
+`;
+
+const StyledBoard = styled(Board)`
+  margin-left: -14px;
+  margin-top: 30px;
+  width: calc(100% + 28px);
+`;
+
+const TriangleStyled = styled(Triangle)`
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  right: -108px;
+  top: -104px;
+  transform: rotate(179deg);
+
+  @media screen and (min-width: 640px){
+    right: -108px;
+    top: -104px;
+  }
+
+  @media screen and (max-height: 575px) and (orientation: landscape){
+    //width: 480px;
+    //height: 100%;
+  }
+`;
 
 const PEN_PLACES = [
   {
@@ -65,16 +105,19 @@ const INITIAL_PEN_POSITIONS = {
 // PenPlaceId[]
 const WIN_PEN_PLACES = ['1', '2'];
 
-const MAX_TRIES_COUNT = 1;
-const MAX_TIME_AVAILABLE = 60;
+const MAX_TRIES_COUNT = 2;
 
 export function Screen18() {
+  const questionId = '7';
+  const question = getQuestionById(questionId);
+
   const { next } = useProgress();
+
   const [positions, setPositions] = useState(INITIAL_PEN_POSITIONS);
   const usedTriesCount = useRef(0);
   const isGameCompleted = useRef(false);
 
-  const { timeLeft, start, stop } = useTimer(MAX_TIME_AVAILABLE, { onFinish: checkPositions });
+  const { timeLeft, start, stop } = useTimer(question.time, { onFinish: checkPositions });
 
   function checkPositions() {
     const places = Object.keys(positions).filter(place => hasPen(positions[place]));
@@ -96,9 +139,9 @@ export function Screen18() {
   }
 
   function handleFinishGame() {
-    isGameCompleted.current = true;
-    stop();
-    next();
+    // isGameCompleted.current = true;
+    // stop();
+    // next();
   }
 
   function handleLose() {
@@ -109,15 +152,28 @@ export function Screen18() {
     handleFinishGame();
   }
 
-  useEffect(start, []);
+  // useEffect(start, []);
 
   return (
     <ScreenWrapper>
-      <div>{normalizeSecs(timeLeft)}</div>
-      <br/>
-      <Board places={PEN_PLACES} positions={positions} onPositionsChange={handlePositionsChange} />
-      <br/>
-      <Button onClick={checkPositions}>Ответить</Button>
+      <TriangleStyled />
+      <QuestionNumber number={7} />
+      <TextWrapper>
+        <StyledText>
+          Нам очень важно, чтобы в нашей компании люди дружили не только
+          между собой, но и с логикой.
+        </StyledText>
+        <StyledText>
+          Мы выложим фигуру из ручек.
+          Вам нужно переложить ручки так,
+          чтобы получилось 3 равных квадрата.
+        </StyledText>
+        <StyledTextBold>
+          Имейте в виду, что задача на время,
+          у вас две попытки. Желаем удачи!)
+        </StyledTextBold>
+      </TextWrapper>
+      <StyledBoard places={PEN_PLACES} positions={positions} onPositionsChange={handlePositionsChange} />
     </ScreenWrapper>
   );
 }

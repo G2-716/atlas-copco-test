@@ -24,7 +24,7 @@ const StyledPenPlaceWrapper = styled.div`
 const StyledPenPlace = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${({ hovered }) => `rgba(255, 255, 255, ${hovered ? '0.8' : '0.4'})`};
+  background-color: ${({ hovered }) => `rgba(255, 255, 255, ${hovered ? '0.8' : '0.3'})`};
 `;
 
 const StyledPen = styled(Pen)`
@@ -39,7 +39,7 @@ export function hasPen(pen) {
 }
 
 export function PenPlace(props) {
-  const { pen, className, top, left, direction, onDropPen } = props;
+  const { pen, className, direction, onDropPen } = props;
 
   const [{ hovered }, drop] = useDrop(() => ({
     accept: 'PEN',
