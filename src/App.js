@@ -5,6 +5,14 @@ import { ProgressProvider } from './context/ProgressContext';
 import { iphone } from "./constants/images";
 import { useProgressInit } from './hooks/useProgressInit';
 
+const Wrapper = styled.div`
+  @media screen and (min-width: 640px) {
+    ${({ styles }) => styles};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`
 const Image = styled.img`
   display: none;
   
@@ -36,14 +44,7 @@ const ComponentWrapper = styled.div`
     max-height: 700px;
     height: 100%;
     max-width: 325px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
     padding-top: 30px;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
   }
 `;
 
@@ -76,13 +77,13 @@ export function App() {
   }, []);
 
   return (
-    <div>
+    <Wrapper styles={{ height }}>
       <ProgressProvider value={progress}>
         <Image src={iphone} />
         <ComponentWrapper styles={{ height }}>
           <Component />
         </ComponentWrapper>
       </ProgressProvider>
-    </div>
+    </Wrapper>
   );
 }

@@ -14,22 +14,79 @@ import { useDidMountEffect } from '../../../hooks/useDidMountEffect';
 import { Modal } from '../../common/Modal';
 import { BEFORE_NEXT_SCREEN_DELAY } from '../../../constants/delays';
 
+const WrapperStyled = styled(ScreenWrapper)`
+    @media screen and (max-height: 550px){
+        padding-top: 10px;
+    }
+`
 const TextWrapper = styled.div`
   margin-top: 24px;
+  
+  @media screen and (max-height: 720px){
+      margin-top: 15px;
+  }
+  
+  @media screen and (max-height: 500px){
+      margin-top: 10px;
+  }
 `;
 
 const StyledText = styled(Text)`
   font-size: 16px;
+  @media screen and (max-height: 720px){
+        font-size: 14px;
+  }
+  
+  @media screen and (max-height: 500px){
+      font-size: 12px;
+  }
+  
+  @media screen and (max-height: 460px){
+    margin-bottom: 5px;
+    
+    &:first-child{
+        display: none;
+    }
+  }
 `;
 
 const StyledTextBold = styled(TextBold)`
   font-size: 16px;
+  
+  @media screen and (max-height: 720px){
+        font-size: 14px;
+  }
+  
+  @media screen and (max-height: 500px){
+      font-size: 12px;
+  }
 `;
 
 const StyledBoard = styled(Board)`
   margin-left: -14px;
   margin-top: 30px;
   width: calc(100% + 28px);
+  
+  @media screen and (max-height: 630px){
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  @media screen and (max-height: 500px){
+    margin-top: 10px;
+  }
+  
+  @media screen and (max-height: 640px) and (orientation: landscape){
+    max-width: 100%;
+    width: 300px;
+    margin: 10px auto 0;
+  }
+  
+  @media screen and (max-height: 400px) and (orientation: landscape){
+    width: 28vh;
+    margin: 5px auto 0;
+  }
 `;
 
 const TriangleStyled = styled(Triangle)`
@@ -45,9 +102,9 @@ const TriangleStyled = styled(Triangle)`
     top: -104px;
   }
 
-  @media screen and (max-height: 575px) and (orientation: landscape){
-    //width: 480px;
-    //height: 100%;
+  @media screen and (max-height: 600px)  and (max-width:640px){
+    right: -121px;
+    top: -128px;
   }
 `;
 
@@ -202,7 +259,7 @@ export function Screen18() {
   useEffect(start, []);
 
   return (
-    <ScreenWrapper>
+    <WrapperStyled>
       <TriangleStyled />
       <QuestionNumber number={7} />
       <TextWrapper>
@@ -234,6 +291,6 @@ export function Screen18() {
           onClick={next}
         />
       )}
-    </ScreenWrapper>
+    </WrapperStyled>
   );
 }

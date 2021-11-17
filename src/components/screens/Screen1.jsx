@@ -80,6 +80,7 @@ const Male = styled(MaleIcon)`
     width: 60px;
     height: 60px;
     margin-left: 10px;
+    cursor: pointer;
     
     @media screen and (max-height: 600px){
       width: 50px;
@@ -95,6 +96,7 @@ const Male = styled(MaleIcon)`
 const Female = styled(FemaleIcon)`
     width: 60px;
     height: 60px;
+    cursor: pointer;
     
     @media screen and (max-height: 600px){
       width: 50px;
