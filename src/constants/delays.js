@@ -1,2 +1,2 @@
-export const BEFORE_NEXT_SCREEN_DELAY = 600;
+export const SHORT_AFTER_ANSWER_DELAY = 400;
 export const AFTER_ANSWER_DELAY = 2000;

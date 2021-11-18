@@ -12,7 +12,7 @@ import { getQuestionById } from '../../../utils/getQuestionById';
 import { Triangle } from '../../svg/Triangle';
 import { useDidMountEffect } from '../../../hooks/useDidMountEffect';
 import { Modal } from '../../common/Modal';
-import { BEFORE_NEXT_SCREEN_DELAY } from '../../../constants/delays';
+import { SHORT_AFTER_ANSWER_DELAY } from '../../../constants/delays';
 
 const WrapperStyled = styled(ScreenWrapper)`
     @media screen and (max-height: 550px){
@@ -205,6 +205,7 @@ export function Screen18() {
 
   const [tryLoseModalShown, setTryLoseModalShown] = useState(false);
   const [loseModalShown, setLoseModalShown] = useState(false);
+  const [winModalShown, setWinModalShown] = useState(false);
   const [positions, setPositions] = useState(INITIAL_PEN_POSITIONS);
   const usedTriesCount = useRef(0);
   const isGameCompleted = useRef(false);
@@ -247,7 +248,7 @@ export function Screen18() {
 
     isGameCompleted.current = true;
     stop();
-    setTimeout(next, BEFORE_NEXT_SCREEN_DELAY);
+    setTimeout(next, SHORT_AFTER_ANSWER_DELAY);
   }
 
   useDidMountEffect(() => {
@@ -269,7 +270,7 @@ export function Screen18() {
         </StyledText>
         <StyledText>
           Мы выложим фигуру из ручек.
-          Вам нужно переложить ручки так,
+          Вам нужно переложить 3 ручки так,
           чтобы получилось 3 равных квадрата.
         </StyledText>
         <StyledTextBold>
@@ -288,6 +289,12 @@ export function Screen18() {
         <StyledModal
           text={`${user.name}, \nк сожалению, время и попытки кончились.`}
           additionalText={'Ничего страшного, в следующий раз точно получится!'}
+          onClick={next}
+        />
+      )}
+      {winModalShown && (
+        <StyledModal
+          text={`Вы отлично справились, ${user.name}!`}
           onClick={next}
         />
       )}

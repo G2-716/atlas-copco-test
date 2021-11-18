@@ -4,6 +4,7 @@ import { getQuestionById } from '../../utils/getQuestionById';
 import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { peopleFlying } from '../../constants/images';
+import { SHORT_AFTER_ANSWER_DELAY } from '../../constants/delays';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
@@ -13,7 +14,7 @@ const ImageWrapperStyled = styled(ImageWrapper)`
 export function Screen16() {
     const question = getQuestionById('6');
     return (
-        <DefaultQuestionWrapper question={question} isShort={false}>
+        <DefaultQuestionWrapper question={question} afterAnswerDelay={SHORT_AFTER_ANSWER_DELAY} isShort={false}>
             <ImageWrapperStyled>
                 <ImageStyled src={peopleFlying} />
             </ImageWrapperStyled>

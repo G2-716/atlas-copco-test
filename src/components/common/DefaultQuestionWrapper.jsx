@@ -60,7 +60,7 @@ const AnswerWrapperShort = styled(AnswerWrapper)`
 `;
 
 export const DefaultQuestionWrapper = (props) => {
-    const { question, timeLeft, isShort, chooseFunc, children } = props;
+    const { question, timeLeft, isShort, afterAnswerDelay, chooseFunc, children } = props;
 
     const { answers, updateAnswer, next } = useProgress();
 
@@ -68,7 +68,8 @@ export const DefaultQuestionWrapper = (props) => {
         if (answers[question.id]) return;
         if (typeof chooseFunc === 'function') chooseFunc(id);
         updateAnswer(question.id, id);
-        setTimeout(next, AFTER_ANSWER_DELAY);
+        const timeout = afterAnswerDelay || AFTER_ANSWER_DELAY;
+        setTimeout(next, timeout);
     };
 
     const renderAnswerWrapper = (answer) => {
