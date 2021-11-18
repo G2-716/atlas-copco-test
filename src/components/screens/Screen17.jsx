@@ -82,7 +82,7 @@ export function Screen17() {
         <ScreenWrapper>
             <QuestionNumber number={questionNumber} />
             <CircleStyled/>
-            <TriangleStyled fill={'#42CC58'}/>
+            <TriangleStyled fill={'#42CC58'} strokeWidth={'7'}/>
             <TextStyled>{text}</TextStyled>
             <Button onClick={next}>Продолжить</Button>
             <ImageWrapperStyled>
