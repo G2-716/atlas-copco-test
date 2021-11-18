@@ -79,7 +79,7 @@ export function Screen17() {
     const text = getAnswerById(questionNumber, answers[questionNumber])?.afterText();
 
     return (
-        <ScreenWrapper onClick={next}>
+        <ScreenWrapper>
             <QuestionNumber number={questionNumber} />
             <CircleStyled/>
             <TriangleStyled fill={'#42CC58'}/>
