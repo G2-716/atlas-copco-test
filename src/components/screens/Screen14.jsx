@@ -10,6 +10,10 @@ import { useProgress } from '../../hooks/useProgress';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: 25%;
+    
+    @media screen and (min-width: 640px) and (max-height: 750px){
+        height: 23%;
+    }
 `;
 
 const Image = styled(ImageStyled)`
