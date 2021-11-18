@@ -36,13 +36,16 @@ const PenPreview = (props) => {
 };
 
 export function Pen(props) {
-  const { id, className, direction } = props;
+  const { id, className, direction, onDragStart } = props;
   const dragRef = useRef();
   const [dragSize, setDragSize] = useState(0);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'PEN',
-    item: { id },
+    item: () => {
+      onDragStart?.();
+      return { id };
+    },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),

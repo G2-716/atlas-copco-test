@@ -51,7 +51,7 @@ const HTML5toTouch = {
 };
 
 export function Board(props) {
-  const { className, places, positions, onPositionsChange } = props;
+  const { className, places, positions, onPositionsChange, onDragStart } = props;
 
   function handlePenDrop(placeId, penId) {
     const prev = positions;
@@ -76,7 +76,8 @@ export function Board(props) {
                         id={placeId}
                         direction={direction}
                         pen={positions[placeId]}
-                        onDropPen={(penId) => handlePenDrop(placeId, penId)}
+                        onPenDragStart={onDragStart}
+                        onPenDrop={(penId) => handlePenDrop(placeId, penId)}
                       />
                     );
                   })}

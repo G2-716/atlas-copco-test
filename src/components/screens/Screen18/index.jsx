@@ -12,13 +12,31 @@ import { getQuestionById } from '../../../utils/getQuestionById';
 import { Triangle } from '../../svg/Triangle';
 import { useDidMountEffect } from '../../../hooks/useDidMountEffect';
 import { Modal } from '../../common/Modal';
-import { SHORT_AFTER_ANSWER_DELAY } from '../../../constants/delays';
+import { Timer } from '../../common/Timer';
 
 const WrapperStyled = styled(ScreenWrapper)`
     @media screen and (max-height: 550px){
         padding-top: 10px;
     }
 `
+
+const GameInfoStyled = styled.div`
+  display: flex;
+`;
+
+const TimerStyled = styled(Timer)`
+    height: 45px;
+    width: 86px;
+    margin-left: 10px;
+    
+    @media screen and (max-height: 600px){
+        height: 30px;
+    }
+    @media screen and (min-width: 640px) and (max-height: 655px){
+        height: 32px;
+    } 
+`;
+
 const TextWrapper = styled.div`
   margin-top: 24px;
   
@@ -209,23 +227,31 @@ export function Screen18() {
   const [positions, setPositions] = useState(INITIAL_PEN_POSITIONS);
   const usedTriesCount = useRef(0);
   const isGameCompleted = useRef(false);
+  const isGameStarted = useRef(false);
 
-  const { start, stop, restart } = useTimer(question.time, { onFinish: handleTimeout });
+  const { timeLeft, start, stop, restart } = useTimer(question.time, { onFinish: handleTimeout });
 
   function checkPositions(positions) {
     const places = Object.keys(positions).filter(place => hasPen(positions[place]));
     return WIN_PEN_PLACES.some(winPlaces => isEmpty(xor(places, winPlaces)));
   }
 
-  function handlePositionsChange(positions) {
-    if (isGameCompleted.current) return;
-    setPositions(positions);
-  }
-
   function resetTryState() {
     setTryLoseModalShown(false);
     setPositions(INITIAL_PEN_POSITIONS);
     restart();
+  }
+
+  function handleDragStart() {
+    if (isGameCompleted.current || isGameStarted.current) return;
+
+    isGameStarted.current = true;
+    start();
+  }
+
+  function handlePositionsChange(positions) {
+    if (isGameCompleted.current) return;
+    setPositions(positions);
   }
 
   function handleTimeout() {
@@ -248,7 +274,7 @@ export function Screen18() {
 
     isGameCompleted.current = true;
     stop();
-    setTimeout(next, SHORT_AFTER_ANSWER_DELAY);
+    setWinModalShown(true);
   }
 
   useDidMountEffect(() => {
@@ -257,12 +283,17 @@ export function Screen18() {
     }
   }, [positions]);
 
-  useEffect(start, []);
+  useEffect(() => {
+    return () => stop();
+  }, []);
 
   return (
     <WrapperStyled>
       <TriangleStyled />
-      <QuestionNumber number={7} />
+      <GameInfoStyled>
+        <QuestionNumber number={7} />
+        <TimerStyled timeLeft={timeLeft}/>
+      </GameInfoStyled>
       <TextWrapper>
         <StyledText>
           Нам очень важно, чтобы в нашей компании люди дружили не только
@@ -278,10 +309,16 @@ export function Screen18() {
           у вас две попытки. Желаем удачи!)
         </StyledTextBold>
       </TextWrapper>
-      <StyledBoard places={PEN_PLACES} positions={positions} onPositionsChange={handlePositionsChange} />
+      <StyledBoard
+        places={PEN_PLACES}
+        positions={positions}
+        onPositionsChange={handlePositionsChange}
+        onDragStart={handleDragStart}
+      />
       {tryLoseModalShown && (
         <StyledModal
           text={`Вы не успели, ${user.name}.\n\nНе переживайте, есть еще одна попытка :)`}
+          btnTop={30}
           onClick={resetTryState}
         />
       )}
@@ -289,12 +326,15 @@ export function Screen18() {
         <StyledModal
           text={`${user.name}, \nк сожалению, время и попытки кончились.`}
           additionalText={'Ничего страшного, в следующий раз точно получится!'}
+          btnTop={30}
           onClick={next}
         />
       )}
       {winModalShown && (
         <StyledModal
           text={`Вы отлично справились, ${user.name}!`}
+          btnText={'Завершить'}
+          btnTop={50}
           onClick={next}
         />
       )}

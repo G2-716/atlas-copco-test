@@ -39,7 +39,7 @@ export function hasPen(pen) {
 }
 
 export function PenPlace(props) {
-  const { pen, className, direction, onDropPen } = props;
+  const { pen, className, direction, onPenDrop, onPenDragStart } = props;
 
   const [{ hovered }, drop] = useDrop(() => ({
     accept: 'PEN',
@@ -47,17 +47,17 @@ export function PenPlace(props) {
       hovered: monitor.canDrop() && monitor.isOver(),
     }),
     drop: (item) => {
-      onDropPen?.(item?.id);
+      onPenDrop?.(item?.id);
     },
     canDrop: () => !hasPen(pen),
-  }), [pen, onDropPen]);
+  }), [pen, onPenDrop]);
 
   return (
     <StyledWrapper className={className} direction={direction}>
       <StyledPenPlaceWrapper ref={drop}>
         <StyledPenPlace hovered={hovered} />
       </StyledPenPlaceWrapper>
-      {hasPen(pen) && <StyledPen id={pen} direction={direction} />}
+      {hasPen(pen) && <StyledPen id={pen} direction={direction} onDragStart={onPenDragStart} />}
     </StyledWrapper>
   );
 }

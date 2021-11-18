@@ -33,6 +33,7 @@ const TextStyled = styled(TextBold)`
 const ButtonStyled = styled(Button)`
     background: #0098C7;
     border: none;
+    margin-top: ${({ btnTop }) => btnTop}px;
     
     @media screen and (max-width: 300px){
       font-size: 14px;
@@ -45,6 +46,7 @@ export const Modal = (props) => {
         text = 'К сожалению,\nвы не успели дать ответ.\n\nПродолжим?',
         additionalText = '',
         btnText = 'Продолжить',
+        btnTop = 0,
         onClick,
     } = props;
 
@@ -53,7 +55,7 @@ export const Modal = (props) => {
             <ModalWindow className={className}>
                 <TextStyled>{text}</TextStyled>
                 <Text>{additionalText}</Text>
-                <ButtonStyled onClick={onClick}>{btnText}</ButtonStyled>
+                <ButtonStyled btnTop={btnTop} onClick={onClick}>{btnText}</ButtonStyled>
             </ModalWindow>
         </ModalWrapper>
     )
