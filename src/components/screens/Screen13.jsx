@@ -36,25 +36,13 @@ const AfterText = styled(Text)`
 
 const ButtonsWrapper = styled.div`
     display: flex;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-right: -15px;
 `;
 
 const ButtonStyled = styled(Button)`
-    width: 25%;
-    min-width: 75px;
     font-size: 16px;
     height: 45px;
-    
-    @media screen and (max-height: 520px) and (orientation: landscape){
-      height: 30px;
-      font-size: 12px;
-    }
-`;
-
-const ResetButtonStyled = styled(ButtonStyled)`
-    width: 248px;
-    margin-left: 10px;
     
     @media screen and (max-height: 520px) and (orientation: landscape){
       height: 30px;
@@ -128,7 +116,7 @@ export function Screen13() {
 
     const question = getQuestionById('3');
 
-    const { user, next, resetInterview } = useProgress();
+    const { user, next } = useProgress();
 
     const getSliderColor = (answer) => {
         if (answer.isCorrect) return '#42CC58'
@@ -140,11 +128,10 @@ export function Screen13() {
     }
 
     const getAfterAnswerContent = () => {
-        let title, image, resetBtn;
+        let title, image;
         const text = 'Теперь вопрос на креативность, вы готовы?';
         if (answer.isCorrect) {
             title = `Вы правы, ${user.name}!`;
-            resetBtn = false;
             image = <AfterCorrectImageWrapperStyled>
                 <ImageStyled src={correctAge} alt={''} />
             </AfterCorrectImageWrapperStyled>
@@ -154,8 +141,6 @@ export function Screen13() {
             image = <AfterIncorrectImageWrapperStyled>
                 <ImageStyled src={incorrectAge} alt={''} />
             </AfterIncorrectImageWrapperStyled>;
-            resetBtn = true;
-
         }
 
         return (
@@ -168,11 +153,6 @@ export function Screen13() {
                 </AfterText>
                 <ButtonsWrapper>
                     <ButtonStyled onClick={next}>Готов!</ButtonStyled>
-                    {resetBtn && <ResetButtonStyled
-                        onClick={resetInterview}
-                    >
-                        Я уже ни в чем не уверен
-                    </ResetButtonStyled>}
                 </ButtonsWrapper>
                 {image}
             </>
