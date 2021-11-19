@@ -6,6 +6,7 @@ import { TextBold } from '../common/Text';
 import { Triangle } from '../svg/Triangle';
 import { dialog, peopleBb } from '../../constants/images';
 import { ImageStyled, ImageWrapper } from '../common/Image';
+import { Button } from '../common/Button';
 
 const TriangleStyled = styled(Triangle)`
     position: absolute;
@@ -14,21 +15,21 @@ const TriangleStyled = styled(Triangle)`
     transform: translate(-50%, 0);
     width: 165px;
     height: 143px;
+
+    @media screen and (max-width: 640px){
+      top: -91px;
+    }
 `;
 
 const DialogWrapper = styled.div`
     width: 298px;
     height: 229px;
-    margin: 109px auto 0;
+    margin: 40px auto 0;
     position: relative;
     
     @media screen and (max-width: 330px){
       width: 240px;
       height: 184px;
-    }
-    
-    @media screen and (max-height: 600px){
-      margin-top: 80px;
     }
     
     @media screen and (min-width: 640px){
@@ -43,6 +44,10 @@ const DialogWrapper = styled.div`
 const DialogStyled = styled.img`
     width: 100%;
     height: 100%;
+`;
+
+const ButtonStyled = styled(Button)`
+  margin-top: 20px;
 `;
 
 const TextWrapper = styled.div`
@@ -70,14 +75,14 @@ const TextWrapper = styled.div`
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
-    max-height: 46%;
+    max-height: 40%;
 `;
 
 export function Screen19() {
   const { next } = useProgress();
 
   return (
-    <ScreenWrapper onClick={next}>
+    <ScreenWrapper>
         <TriangleStyled/>
         <DialogWrapper>
             <DialogStyled src={dialog} alt={''} />
@@ -89,6 +94,7 @@ export function Screen19() {
                     {'Мы вам обязательно\nперезвоним.'}
                 </TextBold>
             </TextWrapper>
+          <ButtonStyled onClick={next}>Дальше</ButtonStyled>
         </DialogWrapper>
         <ImageWrapperStyled>
             <ImageStyled src={peopleBb} alt={''} />
