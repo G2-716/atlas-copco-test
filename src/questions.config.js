@@ -84,17 +84,17 @@ export const questions = [
             {
                 id: '1',
                 text: 'Так рабочие не поранят себя об углы, когда будут чинить канализацию',
-                isCorrect: true
+                isCorrect: false
             },
             {
                 id: '2',
                 text: 'Думаю, это просто случайность',
-                isCorrect: true
+                isCorrect: false
             },
             {
                 id: '3',
                 text: 'Чтобы крышка в люк не провалилась',
-                isCorrect: true
+                isCorrect: false
             },
             {
                 id: '4',
@@ -108,7 +108,7 @@ export const questions = [
         min: 1,
         max: 15,
         title: () => 'Интересный вариант ответа. Поговорим о вас.',
-        text: () => 'Сколько времени в день у вас уходит на соцсети?',
+        text: () => 'Сколько часов в день у вас уходит на соцсети?',
         answers: [
             {
                 id: '1',
