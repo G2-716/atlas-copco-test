@@ -94,7 +94,7 @@ export const questions = [
             {
                 id: '3',
                 text: 'Чтобы крышка в люк не провалилась',
-                isCorrect: false
+                isCorrect: true
             },
             {
                 id: '4',
