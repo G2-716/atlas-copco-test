@@ -99,7 +99,7 @@ export const questions = [
             {
                 id: '4',
                 text: 'Почему дырки в одежде круглые? Потому так всегда и происходит. Дырки — круглые.',
-                isCorrect: true
+                isCorrect: false
             },
         ],
     },
