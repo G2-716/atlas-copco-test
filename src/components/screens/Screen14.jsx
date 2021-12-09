@@ -7,6 +7,8 @@ import { ImageStyled, ImageWrapper } from '../common/Image';
 import { peopleThinking } from '../../constants/images';
 import { Modal } from '../common/Modal';
 import { useProgress } from '../../hooks/useProgress';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
+import { getAnswerById } from '../../utils/getAnswerById';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: 25%;
@@ -28,9 +30,21 @@ export function Screen14() {
         setIsModal(true)
     };
 
-    const question = getQuestionById('4');
+    const handleTimeoutConfirm = () => {
+        reachMetrikaGoal('timeout4');
+        next?.();
+    };
+
+    const questionId = '4';
+    const question = getQuestionById(questionId);
 
     const { timeLeft, start, stop } = useTimer(question.time, { onFinish: handleTimerFinish });
+
+    const handleAnswerChoose = (answerId) => {
+        stop?.();
+        const answer = getAnswerById(questionId, answerId);
+        reachMetrikaGoal(answer.isCorrect ? 'r4' : 'w4');
+    }
 
     useEffect(start, []);
 
@@ -39,9 +53,9 @@ export function Screen14() {
             question={question}
             isShort={false}
             timeLeft={timeLeft}
-            chooseFunc={stop}
+            chooseFunc={handleAnswerChoose}
         >
-            {isModal && <Modal onClick={next} />}
+            {isModal && <Modal onClick={handleTimeoutConfirm} />}
             <ImageWrapperStyled>
                 <Image src={peopleThinking} alt={''} />
             </ImageWrapperStyled>

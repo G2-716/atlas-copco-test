@@ -9,6 +9,7 @@ import {
     incorrectCompany
 } from '../../constants/images';
 import { getAnswerById } from '../../utils/getAnswerById';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
@@ -26,7 +27,9 @@ export function Screen12() {
     }
 
     const onGiveAnswer = (answerId) => {
-        setAnswer(getAnswerById(questionId, answerId));
+        const answer = getAnswerById(questionId, answerId);
+        setAnswer(answer);
+        reachMetrikaGoal(answer.isCorrect ? 'r2' : 'w2');
     }
 
     const question = getQuestionById(questionId);

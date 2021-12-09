@@ -6,6 +6,7 @@ import { useProgress } from '../../hooks/useProgress';
 import { Text, TextBold } from './Text';
 import { coffeeMan } from '../../constants/images';
 import { Button } from './Button';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled(ScreenWrapper)`
     padding-top: 8.1%;
@@ -42,6 +43,11 @@ export function InterviewStartScreen(props) {
     const { next } = useProgress();
     const { title, text } = props;
 
+    function handleNext() {
+      reachMetrikaGoal('test');
+      next?.();
+    }
+
     return (
         <Wrapper>
             <TextWrapper>
@@ -58,7 +64,7 @@ export function InterviewStartScreen(props) {
             <ImageWrapperStyled>
                 <Image src={coffeeMan} />
             </ImageWrapperStyled>
-            <Button onClick={next}>Конечно!</Button>
+            <Button onClick={handleNext}>Конечно!</Button>
         </Wrapper>
     );
 }

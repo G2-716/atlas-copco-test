@@ -7,6 +7,7 @@ import { peopleLightning } from '../../constants/images';
 import { TextBold } from '../common/Text';
 import { useProgress } from '../../hooks/useProgress';
 import { AFTER_ANSWER_DELAY } from '../../constants/delays';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     @media screen and (max-width: 330px){
@@ -22,6 +23,13 @@ const AfterImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
     max-height: 60%;
 `
+
+const zoneToGoalMapper = {
+    'green': 'g5',
+    'yellow': 'y5',
+    'red': 'r5',
+}
+
 export function Screen15() {
     const [answer, setAnswer] = useState(null);
     const { user, next } = useProgress();
@@ -32,6 +40,7 @@ export function Screen15() {
 
     const onGiveAnswer = (givenAnswer) => {
         setAnswer(givenAnswer);
+        reachMetrikaGoal(zoneToGoalMapper[givenAnswer.zone]);
         setTimeout(next, AFTER_ANSWER_DELAY);
     }
 

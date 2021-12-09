@@ -7,6 +7,7 @@ import { correctAge, incorrectAge, peopleRocket } from '../../constants/images';
 import { Text, TextBold } from '../common/Text';
 import { useProgress } from '../../hooks/useProgress';
 import { Button } from '../common/Button';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     
@@ -125,6 +126,7 @@ export function Screen13() {
 
     const onGiveAnswer = (givenAnswer) => {
         setAnswer(givenAnswer)
+        reachMetrikaGoal(givenAnswer.isCorrect ? 'r3' : 'w3');
     }
 
     const getAfterAnswerContent = () => {

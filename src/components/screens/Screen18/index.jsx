@@ -13,6 +13,7 @@ import { Triangle } from '../../svg/Triangle';
 import { useDidMountEffect } from '../../../hooks/useDidMountEffect';
 import { Modal } from '../../common/Modal';
 import { Timer } from '../../common/Timer';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 const WrapperStyled = styled(ScreenWrapper)`
     @media screen and (max-height: 550px){
@@ -261,6 +262,16 @@ export function Screen18() {
     setWinModalShown(true);
   }
 
+  function handleTimeoutConfirm() {
+    reachMetrikaGoal('timeout7');
+    next?.();
+  }
+
+  function handleWinConfirm() {
+    reachMetrikaGoal('r7');
+    next?.();
+  }
+
   useDidMountEffect(() => {
     if (checkPositions(positions)) {
       handleWin();
@@ -311,7 +322,7 @@ export function Screen18() {
           text={`${user.name}, \nк сожалению, время и попытки кончились.`}
           additionalText={'Ничего страшного, в следующий раз точно получится!'}
           btnTop={30}
-          onClick={next}
+          onClick={handleTimeoutConfirm}
         />
       )}
       {winModalShown && (
@@ -319,7 +330,7 @@ export function Screen18() {
           text={`Вы отлично справились, ${user.name}!`}
           btnText={'Завершить'}
           btnTop={50}
-          onClick={next}
+          onClick={handleWinConfirm}
         />
       )}
     </WrapperStyled>

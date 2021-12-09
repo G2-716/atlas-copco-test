@@ -8,6 +8,7 @@ import { correct7, helloPeople, incorrect7 } from '../../constants/images';
 import { Modal } from '../common/Modal';
 import { getAnswerById } from '../../utils/getAnswerById';
 import { useProgress } from '../../hooks/useProgress';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
@@ -24,6 +25,11 @@ export function Screen11() {
         setIsModal(true);
     };
 
+    const handleTimeoutConfirm = () => {
+        reachMetrikaGoal('timeout1');
+        next?.();
+    };
+
     const getImage = () => {
         if (!answer) return helloPeople
         if (answer.isCorrect) return correct7
@@ -32,7 +38,9 @@ export function Screen11() {
 
     const onGiveAnswer = (answerId) => {
         stop();
-        setAnswer(getAnswerById(questionId, answerId));
+        const answer = getAnswerById(questionId, answerId);
+        reachMetrikaGoal(answer.isCorrect ? 'r1' : 'w1');
+        setAnswer(answer);
     }
 
     const question = getQuestionById(questionId);
@@ -48,7 +56,7 @@ export function Screen11() {
             timeLeft={timeLeft}
             chooseFunc={onGiveAnswer}
         >
-            {isModal && <Modal onClick={next} />}
+            {isModal && <Modal onClick={handleTimeoutConfirm} />}
             <ImageWrapperStyled>
                 <ImageStyled src={getImage()} alt={''} />
             </ImageWrapperStyled>
