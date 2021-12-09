@@ -9,6 +9,7 @@ import { Button } from '../common/Button';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { phoneCall } from '../../constants/images';
 import { Circle } from '../common/Circle';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const TriangleStyled = styled(Triangle)`
     position: absolute;
@@ -126,6 +127,7 @@ export function Screen20() {
   const { user } = useProgress();
 
   const onLandingBtnClick = () => {
+      reachMetrikaGoal('learnmore');
       window.open('https://www.atlascopco.com/ru-ru/jobs', '_blank');
   }
 

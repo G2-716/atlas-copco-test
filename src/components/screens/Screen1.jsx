@@ -10,6 +10,7 @@ import {introBgElem, introPeople} from "../../constants/images";
 import {ImageStyled, ImageWrapper} from "../common/Image";
 import { LogoStyled } from '../common/LogoStyled';
 import { Button } from '../common/Button';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled(ScreenWrapper)`
     padding-top: 4.61%;
@@ -154,6 +155,10 @@ export function Screen1() {
   function handleSexChange(event) {
     updateUser('sex', event.target.value);
   }
+  function handleNext() {
+    reachMetrikaGoal('start');
+    next?.();
+  }
 
   return (
     <Wrapper>
@@ -173,7 +178,7 @@ export function Screen1() {
           <RadioBtn id='maleRadio' type="radio" name='sex' value='male' onChange={handleSexChange} />
           <label htmlFor={'maleRadio'}>  <Male  active={user.sex === 'male'}/> </label>
         </RadioWrapper>
-        <ButtonStyled disabled={!(user.sex && user.name)} onClick={next}>Играть</ButtonStyled>
+        <ButtonStyled disabled={!(user.sex && user.name)} onClick={handleNext}>Играть</ButtonStyled>
         <ImageWrapperStyled>
           <Image src={introPeople} alt={''} />
         </ImageWrapperStyled>

@@ -5,6 +5,7 @@ import { DefaultQuestionWrapper } from '../common/DefaultQuestionWrapper';
 import { ImageStyled, ImageWrapper } from '../common/Image';
 import { peopleFlying } from '../../constants/images';
 import { SHORT_AFTER_ANSWER_DELAY } from '../../constants/delays';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const ImageWrapperStyled = styled(ImageWrapper)`
     height: auto;
@@ -12,9 +13,20 @@ const ImageWrapperStyled = styled(ImageWrapper)`
 `;
 
 export function Screen16() {
-    const question = getQuestionById('6');
+    const questionId = '6';
+    const question = getQuestionById(questionId);
+
+    const onGiveAnswer = () => {
+      reachMetrikaGoal('q6');
+    }
+
     return (
-        <DefaultQuestionWrapper question={question} afterAnswerDelay={SHORT_AFTER_ANSWER_DELAY} isShort={false}>
+        <DefaultQuestionWrapper
+          question={question}
+          afterAnswerDelay={SHORT_AFTER_ANSWER_DELAY}
+          isShort={false}
+          chooseFunc={onGiveAnswer}
+        >
             <ImageWrapperStyled>
                 <ImageStyled src={peopleFlying} />
             </ImageWrapperStyled>
